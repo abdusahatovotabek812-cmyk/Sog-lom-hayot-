@@ -1,0 +1,730 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ertalabki mashqlar, yugurish trekeri va shaxsiy mashq rejasi. Bo'g'imga mos low-impact variantlar.">
+    <link rel="icon" href="images/logotip.png">
+    <title>Mashqlar - Sog'lom turmush tarzi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Sog'lom turmush tarzi</h1>
+</header>
+
+<nav class="navbar" aria-label="Asosiy navigatsiya">
+    <a class="logo" href="index.html">
+    <img class="logo-icon" src="images/logotip.png" alt="Sog'lom hayot">
+    <span>Sog'lom hayot</span>
+</a>
+    <ul class="nav-links">
+        <li><a href="maqsad.html">Maqsad</a></li>
+        <li><a href="ovqatlanish.html">Ovqatlanish</a></li>
+        <li><a href="mashqlar.html">Mashqlar</a></li>
+        <li><a href="rejim.html">Rejim</a></li>
+        <li><a href="aloqa.html">Aloqa</a></li>
+    </ul>
+</nav><!-- Hero -->
+<section class="hero">
+    <h2>Ertalabki mashqlar</h2>
+    <p>Bu sahifada ertalabki mashqlar uchun oddiy reja, mashqlar turlari va tavsiya etilgan vaqtlar keltirilgan.</p>
+</section>
+
+<section class="safety">
+    <h2>Tibbiy xavfsizlik</h2>
+    <p>Quyidagi holatlarda mashqni darhol to'xtatib, shifokorga murojaat qiling:</p>
+    <ul class="safety-list">
+        <li>Ko'krak og'rig'i, bosim yoki chap qo'l/jag'da noqulaylik.</li>
+        <li>Qattiq nafas qisishi, bosh aylanishi yoki hushning pasayishi.</li>
+        <li>Tizza/bo'g'imda o'tkir og'riq, shish yoki qarsillash.</li>
+        <li>Yurak urishi, qon bosimi bo'yicha keskin o'zgarish sezsangiz.</li>
+    </ul>
+    <p class="safety-note">Surunkali kasalliklar (yurak, gipertoniya, diabet, bo'g'im) bo'lsa, yangi dasturdan oldin shifokor bilan maslahatlashing.</p>
+</section>
+
+<section class="workout-plan">
+    <h2>Shaxsiy mashq reja (beta)</h2>
+    <p>Darajangiz, maqsad va vaqtga qarab 20–40 daqiqalik reja tuzamiz.</p>
+    <form id="workoutPlanForm" class="workout-form">
+        <label>
+            Daraja
+            <select id="wpLevel" required>
+                <option value="beginner" selected>Boshlovchi</option>
+                <option value="intermediate">O'rtacha</option>
+                <option value="advanced">Tajribali</option>
+            </select>
+        </label>
+        <label>
+            Maqsad
+            <select id="wpGoal" required>
+                <option value="general" selected>Umumiy sog'liq</option>
+                <option value="weight">Ozish</option>
+                <option value="stamina">Chidamlilik</option>
+                <option value="strength">Kuch</option>
+            </select>
+        </label>
+        <label>
+            Vaqt (daq.)
+            <select id="wpMinutes" required>
+                <option value="20">15-20</option>
+                <option value="30" selected>25-35</option>
+                <option value="40">35-45</option>
+            </select>
+        </label>
+        <label>
+            Muhit
+            <select id="wpPlace" required>
+                <option value="home" selected>Uy / hovli</option>
+                <option value="outdoor">Ko'chada</option>
+                <option value="gym">Zal</option>
+            </select>
+        </label>
+        <label class="wp-lowimpact">
+            <input id="wpLowImpact" type="checkbox"> Tizza/bo'g'im sezgir (kam sakrash)
+        </label>
+        <button type="submit">Rejani ko'rish</button>
+    </form>
+    <div id="workoutPlanResult" class="workout-result" aria-live="polite"></div>
+</section>
+
+<!-- Umumiy qoida -->
+<section class="about">
+    <h2>Umumiy tavsiya</h2>
+    <p>
+        Ertalabki mashqlar organizmni uyg'otadi, qon aylanishini yaxshilaydi va kun davomida tetiklik beradi.
+        Boshlovchilar uchun 10-20 daqiqa yetarli, keyin asta-sekin 25-35 daqiqagacha oshirish mumkin.
+    </p>
+    <ul>
+        <li>Mashqdan oldin 1 stakan suv iching, mashqdan keyin suv balansini tiklang.</li>
+        <li>Harakatlarni shoshmasdan, to'g'ri texnikada bajaring.</li>
+        <li>Nafasni ushlab qolmang: kuch ishlatishda nafas chiqaring, bo'shashishda nafas oling.</li>
+        <li>Haftasiga kamida 1 kun tiklanish kuni qoldiring.</li>
+        <li>Keskin og'riq, bosh aylanishi yoki ko'ngil aynishi bo'lsa mashqni to'xtating.</li>
+    </ul>
+</section>
+
+<section class="morning-routine">
+    <h2>Ertalabki badantarbiya dasturi (15-20 daqiqa)</h2>
+    <p>Quyidagi ketma-ketlik yangi boshlovchilar uchun xavfsiz va samarali kundalik kompleks hisoblanadi.</p>
+    <div class="routine-grid">
+        <article class="routine-card">
+            <h3>1. Isinish (4 daqiqa)</h3>
+            <ul>
+                <li>Bo'yin aylantirish - 30 soniya</li>
+                <li>Yelka aylantirish - 30 soniya</li>
+                <li>Qo'lni oldinga/orqaga aylantirish - 1 daqiqa</li>
+                <li>Tizza va to'piqni yengil aylantirish - 2 daqiqa</li>
+            </ul>
+        </article>
+        <article class="routine-card">
+            <h3>2. Asosiy blok (10-12 daqiqa)</h3>
+            <ul>
+                <li>Joyida yengil yugurish - 2 daqiqa</li>
+                <li>Squat - 12-15 marta x 2 set</li>
+                <li>Push-up (yengil variant) - 8-12 marta x 2 set</li>
+                <li>Planka - 30-45 soniya x 2 set</li>
+                <li>Qorin uchun crunch - 12-15 marta x 2 set</li>
+            </ul>
+        </article>
+        <article class="routine-card">
+            <h3>3. Sovutish (3-4 daqiqa)</h3>
+            <ul>
+                <li>Son va boldir mushaklarini cho'zish - 1.5 daqiqa</li>
+                <li>Bel va yelka cho'zilishi - 1 daqiqa</li>
+                <li>Chuqur nafas mashqi - 1 daqiqa</li>
+            </ul>
+        </article>
+    </div>
+    <p class="routine-note">Haftasiga 5 kun bajaring. Og'riq bo'lsa mashqni darhol to'xtating.</p>
+</section>
+
+<section class="exercise-guides">
+    <h2>Mashqlar ketma-ketligi va qanday bajarish kerak</h2>
+    <p>Har bir mashq uchun taxminiy vaqt va bajarish tartibi quyida. Shu ketma-ketlikda bajaring.</p>
+    <div class="guide-grid">
+        <article class="guide-card">
+            <h3>1. Squat</h3>
+            <p class="exercise-time">Vaqt: 5-7 daqiqa (2-3 set)</p>
+            <ul class="guide-steps">
+                <li>Oyoqlar yelka kengligida tursin.</li>
+                <li>Belni tik tutib, tizzani bukib pastga tushing.</li>
+                <li>Tizzani oyoq panjasi yo'nalishida ushlang va yuqoriga qayting.</li>
+            </ul>
+            <p class="coach-title">Aniq bajarish:</p>
+            <ul class="coach-list">
+                <li>Tempo: 3 soniya pastga, 1 soniya ushlab, 2 soniya yuqoriga.</li>
+                <li>Nafas: pastga tushishda nafas oling, tepaga chiqishda nafas chiqaring.</li>
+                <li>Xato: tizza ichkariga kirib ketmasin, bel bukilib qolmasin.</li>
+            </ul>
+            <p class="coach-alert">Nazorat nuqtasi: tizzalar doim oyoq panjasi yo'nalishida harakat qilsin.</p>
+            <div class="guide-media">
+                <div class="video-wrap">
+                    <iframe
+                        src="https://www.youtube.com/embed/aclHkVaku9U"
+                        title="Squat mashqi videosi"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                </div>
+                <a class="video-link" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=proper+squat+form">Video ko'rish</a>
+            </div>
+        </article>
+        <article class="guide-card">
+            <h3>2. Push-up</h3>
+            <p class="exercise-time">Vaqt: 3-5 daqiqa (2 set)</p>
+            <ul class="guide-steps">
+                <li>Qo'llarni yelka kengligida polga qo'ying.</li>
+                <li>Tana boshdan to tovongacha bir chiziqda bo'lsin.</li>
+                <li>Ko'krakni nazorat bilan pastga tushirib, yana yuqoriga itaring.</li>
+            </ul>
+            <p class="coach-title">Aniq bajarish:</p>
+            <ul class="coach-list">
+                <li>Tempo: 2 soniya pastga, 1 soniya pauza, 2 soniya tepaga.</li>
+                <li>Nafas: pastga tushganda nafas oling, yuqoriga itarganda chiqaring.</li>
+                <li>Xato: belni pastga osiltirmang, tirsakni juda keng ochmang.</li>
+            </ul>
+            <p class="coach-alert">Nazorat nuqtasi: qorin tarang bo'lsin, bel bir chiziqda tursin.</p>
+            <div class="guide-media">
+                <div class="video-wrap">
+                    <iframe
+                        src="https://www.youtube.com/embed/IODxDxX7oi4"
+                        title="Push-up mashqi videosi"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                </div>
+                <a class="video-link" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=proper+push+up+form">Video ko'rish</a>
+            </div>
+        </article>
+        <article class="guide-card">
+            <h3>3. Planka</h3>
+            <p class="exercise-time">Vaqt: 3-5 daqiqa (30-45 soniya x 2 set)</p>
+            <ul class="guide-steps">
+                <li>Tirsaklarni yelka ostiga qo'ying.</li>
+                <li>Belni tushirmasdan tana holatini tekis tuting.</li>
+                <li>Qorin mushaklarini tarang tutib, tekis nafas oling.</li>
+            </ul>
+            <p class="coach-title">Aniq bajarish:</p>
+            <ul class="coach-list">
+                <li>Tempo: har setda 30-45 soniya tekis holatda ushlang.</li>
+                <li>Nafas: 3 soniya kiriting, 3 soniya chiqaring, ritmni buzmay turing.</li>
+                <li>Xato: bel pastga tushmasin, bo'yin yuqoriga qadalib qolmasin.</li>
+            </ul>
+            <p class="coach-alert">Nazorat nuqtasi: quloq, yelka, son va tovon bir chiziqda bo'lsin.</p>
+            <div class="guide-media">
+                <div class="video-wrap">
+                    <iframe
+                        src="https://www.youtube.com/embed/ASdvN_XEl_c"
+                        title="Planka mashqi videosi"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                </div>
+                <a class="video-link" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=how+to+do+plank+correctly">Video ko'rish</a>
+            </div>
+        </article>
+        <article class="guide-card">
+            <h3>4. Isinish</h3>
+            <p class="exercise-time">Vaqt: 3-5 daqiqa</p>
+            <ul class="guide-steps">
+                <li>Bo'yin, yelka va belni yengil aylantiring.</li>
+                <li>Tizza va to'piq bo'g'imlarini tayyorlang.</li>
+                <li>Yuklamani sekin boshlab, tana qizishini kuting.</li>
+            </ul>
+            <p class="coach-title">Aniq bajarish:</p>
+            <ul class="coach-list">
+                <li>Tempo: har harakatni 8-10 marta sekin ritmda bajaring.</li>
+                <li>Nafas: aylantirish paytida tinch va chuqur nafas oling.</li>
+                <li>Xato: keskin burilish qilmang, bo'g'imlarni zo'riqtirmang.</li>
+            </ul>
+            <p class="coach-alert">Nazorat nuqtasi: og'riq sezsangiz amplitudani darhol kamaytiring.</p>
+            <div class="guide-media">
+                <div class="video-wrap">
+                    <iframe
+                        src="https://www.youtube.com/embed/MPzfQMxrjdQ"
+                        title="Isinish mashqi videosi"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                </div>
+                <a class="video-link" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=morning+warm+up+routine+5+minutes">Video ko'rish</a>
+            </div>
+        </article>
+        <article class="guide-card">
+            <h3>5. Yengil yugurish / joyida sakrash</h3>
+            <p class="exercise-time">Vaqt: 3-5 daqiqa</p>
+            <ul class="guide-steps">
+                <li>Yengil tempda boshlang.</li>
+                <li>Nafasni ritmda ushlang.</li>
+                <li>Yurak urishi oshganda tempni barqaror qiling.</li>
+            </ul>
+            <p class="coach-title">Aniq bajarish:</p>
+            <ul class="coach-list">
+                <li>Tempo: 20-30 soniya o'rtacha temp, 10 soniya yengil tempda tiklaning.</li>
+                <li>Nafas: 2 qadamda nafas oling, 2 qadamda chiqaring.</li>
+                <li>Xato: tovonni qattiq urib yugurmang, elkani kerib yubormang.</li>
+            </ul>
+            <p class="coach-alert">Nazorat nuqtasi: qadam yengil bo'lsin, tanani oldinga egib yubormang.</p>
+            <div class="guide-media">
+                <div class="video-wrap">
+                    <iframe
+                        src="https://www.youtube.com/embed/iJimN6SsO9k"
+                        title="Yengil yugurish mashqi videosi"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                </div>
+                <a class="video-link" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=light+jogging+in+place+exercise">Video ko'rish</a>
+            </div>
+        </article>
+        <article class="guide-card">
+            <h3>6. Stretching va nafas</h3>
+            <p class="exercise-time">Vaqt: 3-5 daqiqa</p>
+            <ul class="guide-steps">
+                <li>Son, boldir, bel va yelka mushaklarini cho'zing.</li>
+                <li>Har holatda 15-20 soniya ushlab turing.</li>
+                <li>Chuqur nafas olib mashg'ulotni yakunlang.</li>
+            </ul>
+            <p class="coach-title">Aniq bajarish:</p>
+            <ul class="coach-list">
+                <li>Tempo: har cho'zilish holatini kamida 15 soniya ushlab turing.</li>
+                <li>Nafas: cho'zilganda nafasni ushlamang, sekin va uzluksiz nafas oling.</li>
+                <li>Xato: og'riq nuqtasigacha cho'zmang, faqat yengil taranglikda turing.</li>
+            </ul>
+            <p class="coach-alert">Nazorat nuqtasi: cho'zilish paytida yelka va bo'yinni bo'sh qo'ying.</p>
+            <div class="guide-media">
+                <div class="video-wrap">
+                    <iframe
+                        src="https://www.youtube.com/embed/L_xrDAtykMI"
+                        title="Stretching mashqi videosi"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                </div>
+                <a class="video-link" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=cool+down+stretching+routine+5+minutes">Video ko'rish</a>
+            </div>
+        </article>
+    </div>
+    <p class="guide-note">Umumiy vaqt: taxminan 20-30 daqiqa.</p>
+</section>
+
+<section class="run-tracker">
+    <h2>Yugurish trekeri</h2>
+    <p>Start tugmasini bosing. Sahifaga joylashuv (GPS) ruxsatini bersangiz, masofa avtomatik hisoblanadi.</p>
+    <div class="tracker-stats">
+        <div class="tracker-card">
+            <span class="tracker-label">Vaqt</span>
+            <strong id="runTime">00:00:00</strong>
+        </div>
+        <div class="tracker-card">
+            <span class="tracker-label">Masofa</span>
+            <strong id="runDistance">0.00 km</strong>
+        </div>
+        <div class="tracker-card">
+            <span class="tracker-label">O'rtacha tezlik</span>
+            <strong id="runAvgSpeed">0.0 km/soat</strong>
+        </div>
+    </div>
+    <div class="tracker-actions">
+        <button id="startRunBtn" type="button">Start</button>
+        <button id="pauseRunBtn" type="button">Pause</button>
+        <button id="resetRunBtn" type="button">Reset</button>
+    </div>
+    <p id="runStatus" class="run-status">Holat: tayyor</p>
+
+    <div class="run-recommendation">
+        <h3>Ertalabki km tavsiyasi</h3>
+        <p>Darajangiz va vaqtingizga qarab kunlik yugurish masofasini hisoblang.</p>
+        <div class="recommend-form">
+            <label>
+                Daraja
+                <select id="runLevel">
+                    <option value="beginner">Boshlovchi</option>
+                    <option value="intermediate">O'rtacha</option>
+                    <option value="advanced">Tajribali</option>
+                </select>
+            </label>
+            <label>
+                Maqsad
+                <select id="runGoal">
+                    <option value="general">Umumiy sog'liq</option>
+                    <option value="weight_loss">Ozish</option>
+                    <option value="stamina">Chidamlilik</option>
+                    <option value="speed">Tezlikni oshirish</option>
+                </select>
+            </label>
+            <label>
+                Sog'liq holati
+                <select id="healthCondition">
+                    <option value="none">Jiddiy muammo yo'q</option>
+                    <option value="asthma">Astma</option>
+                    <option value="hypertension">Qon bosimi yuqori</option>
+                    <option value="diabetes">Qandli diabet</option>
+                    <option value="joint_pain">Tizza/bo'g'im og'rig'i</option>
+                    <option value="heart_disease">Yurak bilan bog'liq muammo</option>
+                </select>
+            </label>
+            <label>
+                Ertalab ajratadigan vaqt (daqiqada)
+                <input id="runDuration" type="number" min="10" max="90" value="30">
+            </label>
+            <label>
+                Hozirgi haftalik umumiy masofa (km)
+                <input id="currentWeeklyKm" type="number" min="0" max="200" step="0.1" value="12">
+            </label>
+            <button id="calcPlanBtn" type="button">Tavsiyani hisobla</button>
+        </div>
+        <p id="runPlanText" class="run-plan-text"></p>
+        <p id="healthAdviceText" class="health-advice-text"></p>
+    </div>
+
+</section>
+
+<!-- Qo'shimcha tavsiyalar -->
+<section class="about">
+    <h2>Qo'shimcha tavsiyalar</h2>
+    <p>
+        Mashqlarni nonushtadan oldin yoki engil nonushtadan keyin bajarish maqsadga muvofiq.
+        Har kuni bir xil yuklama bermasdan, asta-sekin oshirib boring.
+        Suv ichishni unutmang va og'riq bo'lsa mashqni to'xtating.
+    </p>
+    <ul>
+        <li>Har kuni bir xil vaqtda mashq qilishga odatlaning, bu intizomni kuchaytiradi.</li>
+        <li>Yugurish yoki sakrash uchun qulay poyabzal tanlang, bo'g'imlarga bosim kamayadi.</li>
+        <li>Mashqdan keyin 5-10 daqiqa cho'zilish qiling, mushaklar tezroq tiklanadi.</li>
+        <li>Kamida 7-8 soat uyquga e'tibor bering, natija ancha yaxshilanadi.</li>
+        <li>Haftalik kichik maqsad qo'ying: masalan, vaqtni 2-3 daqiqaga oshirish.</li>
+    </ul>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Sog'lom turmush tarzi. Barcha huquqlar himoyalangan.</p>
+</footer>
+
+<script>
+    const runTimeEl = document.getElementById("runTime");
+    const runDistanceEl = document.getElementById("runDistance");
+    const runAvgSpeedEl = document.getElementById("runAvgSpeed");
+    const runStatusEl = document.getElementById("runStatus");
+    const startBtn = document.getElementById("startRunBtn");
+    const pauseBtn = document.getElementById("pauseRunBtn");
+    const resetBtn = document.getElementById("resetRunBtn");
+    const runLevelEl = document.getElementById("runLevel");
+    const runGoalEl = document.getElementById("runGoal");
+    const healthConditionEl = document.getElementById("healthCondition");
+    const runDurationEl = document.getElementById("runDuration");
+    const currentWeeklyKmEl = document.getElementById("currentWeeklyKm");
+    const calcPlanBtn = document.getElementById("calcPlanBtn");
+    const runPlanTextEl = document.getElementById("runPlanText");
+    const healthAdviceTextEl = document.getElementById("healthAdviceText");
+    const workoutPlanForm = document.getElementById("workoutPlanForm");
+    const workoutPlanResultEl = document.getElementById("workoutPlanResult");
+
+    let elapsedSeconds = 0;
+    let totalDistanceMeters = 0;
+    let timerId = null;
+    let watchId = null;
+    let lastPosition = null;
+    let isRunning = false;
+
+    function toRad(value) {
+        return value * (Math.PI / 180);
+    }
+
+    function distanceBetween(lat1, lon1, lat2, lon2) {
+        const earthRadius = 6371000;
+        const dLat = toRad(lat2 - lat1);
+        const dLon = toRad(lon2 - lon1);
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+            + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2))
+            * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return earthRadius * c;
+    }
+
+    function formatTime(totalSec) {
+        const hours = String(Math.floor(totalSec / 3600)).padStart(2, "0");
+        const minutes = String(Math.floor((totalSec % 3600) / 60)).padStart(2, "0");
+        const seconds = String(totalSec % 60).padStart(2, "0");
+        return `${hours}:${minutes}:${seconds}`;
+    }
+
+    function render() {
+        runTimeEl.textContent = formatTime(elapsedSeconds);
+        const distanceKm = totalDistanceMeters / 1000;
+        runDistanceEl.textContent = `${distanceKm.toFixed(2)} km`;
+        const avgSpeedKmh = elapsedSeconds > 0 ? distanceKm / (elapsedSeconds / 3600) : 0;
+        runAvgSpeedEl.textContent = `${avgSpeedKmh.toFixed(1)} km/soat`;
+    }
+
+    function startTimer() {
+        if (timerId) return;
+        timerId = setInterval(() => {
+            elapsedSeconds += 1;
+            render();
+        }, 1000);
+    }
+
+    function stopTimer() {
+        if (!timerId) return;
+        clearInterval(timerId);
+        timerId = null;
+    }
+
+    function startGps() {
+        if (!navigator.geolocation) {
+            runStatusEl.textContent = "Holat: GPS brauzeringizda mavjud emas.";
+            return;
+        }
+
+        watchId = navigator.geolocation.watchPosition(
+            (position) => {
+                const { latitude, longitude, accuracy } = position.coords;
+                if (accuracy > 60) return;
+
+                if (lastPosition) {
+                    const segment = distanceBetween(
+                        lastPosition.latitude,
+                        lastPosition.longitude,
+                        latitude,
+                        longitude
+                    );
+                    if (segment > 1 && segment < 150) {
+                        totalDistanceMeters += segment;
+                        render();
+                    }
+                }
+                lastPosition = { latitude, longitude };
+                runStatusEl.textContent = "Holat: yugurish kuzatilmoqda.";
+            },
+            () => {
+                runStatusEl.textContent = "Holat: GPS ruxsati berilmadi. Faqat vaqt hisoblanadi.";
+            },
+            {
+                enableHighAccuracy: true,
+                maximumAge: 1000,
+                timeout: 10000
+            }
+        );
+    }
+
+    function stopGps() {
+        if (watchId !== null && navigator.geolocation) {
+            navigator.geolocation.clearWatch(watchId);
+            watchId = null;
+        }
+        lastPosition = null;
+    }
+
+    function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+    }
+
+    function todayLabel() {
+        return new Date().toLocaleDateString("uz-UZ", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        });
+    }
+
+
+    function buildRunPlan() {
+        const level = runLevelEl.value;
+        const goal = runGoalEl.value;
+        const condition = healthConditionEl.value;
+        const duration = Number(runDurationEl.value);
+        const currentWeeklyKm = Number(currentWeeklyKmEl.value);
+        const safeDuration = Number.isFinite(duration) ? clamp(duration, 10, 90) : 30;
+        const safeCurrentWeeklyKm = Number.isFinite(currentWeeklyKm) ? clamp(currentWeeklyKm, 0, 200) : 0;
+
+        const levelMap = {
+            beginner: { pace: 8.5, minKm: 1.5, maxKm: 4.0 },
+            intermediate: { pace: 6.8, minKm: 3.0, maxKm: 8.0 },
+            advanced: { pace: 5.6, minKm: 5.0, maxKm: 12.0 }
+        };
+
+        const goalFactor = {
+            general: 1.0,
+            weight_loss: 1.1,
+            stamina: 1.2,
+            speed: 0.9
+        };
+
+        const conditionMap = {
+            none: {
+                factor: 1.0,
+                advice: "Yugurishdan oldin 5-8 daqiqa isinish qiling."
+            },
+            asthma: {
+                factor: 0.8,
+                advice: "Sovuq havoda yuklamani kamaytiring, nafas qisishi bo'lsa darhol to'xtang."
+            },
+            hypertension: {
+                factor: 0.75,
+                advice: "Juda tez yugurmang. Pulsni nazorat qiling va bosim oshsa mashqni to'xtating."
+            },
+            diabetes: {
+                factor: 0.85,
+                advice: "Yugurishdan oldin qondagi shakar holatini tekshiring, suvni ko'proq iching."
+            },
+            joint_pain: {
+                factor: 0.65,
+                advice: "Qattiq asfalt o'rniga yumshoq yo'lak tanlang, og'riq kuchaysa yugurishni to'xtating."
+            },
+            heart_disease: {
+                factor: 0.45,
+                advice: "Faol yugurish o'rniga shifokor ruxsati bilan yengil yurishdan boshlang."
+            }
+        };
+
+        const base = levelMap[level];
+        const health = conditionMap[condition];
+        const rawKm = (safeDuration / base.pace) * goalFactor[goal] * health.factor;
+        const plannedDailyKm = clamp(rawKm, base.minKm, base.maxKm);
+        const plannedWeeklyKm = plannedDailyKm * 4;
+        const weeklyCapByProgress = safeCurrentWeeklyKm > 0 ? safeCurrentWeeklyKm * 1.1 : plannedWeeklyKm;
+        const weeklyKm = Math.min(plannedWeeklyKm, weeklyCapByProgress);
+        const dailyKm = weeklyKm / 4;
+        const progressLimited = plannedWeeklyKm > weeklyCapByProgress + 0.001;
+
+        if (condition === "heart_disease") {
+            runPlanTextEl.textContent =
+                "Tavsiya: hozircha yugurish emas, 15-25 daqiqa yengil yurishdan boshlang va yuklamani juda sekin oshiring.";
+        } else {
+            const capText = progressLimited
+                ? ` 10% qoida sabab bu hafta maksimum ${weeklyKm.toFixed(1)} km (kuniga ${dailyKm.toFixed(1)} km) tavsiya etiladi.`
+                : "";
+            runPlanTextEl.textContent =
+                `Tavsiya: ertalab ${dailyKm.toFixed(1)} km yuguring (haftasiga 4 kun, jami ${weeklyKm.toFixed(1)} km). ` +
+                "Har haftada masofani ko'pi bilan 10% ga oshiring." + capText;
+        }
+
+        healthAdviceTextEl.textContent =
+            `Sog'liq bo'yicha eslatma: ${health.advice} Ko'krak og'rig'i, bosh aylanishi yoki kuchli nafas qisishi bo'lsa, darhol to'xtang va shifokorga murojaat qiling.`;
+    }
+
+    startBtn.addEventListener("click", () => {
+        if (isRunning) return;
+        isRunning = true;
+        startTimer();
+        startGps();
+        runStatusEl.textContent = "Holat: ishga tushdi.";
+    });
+
+    pauseBtn.addEventListener("click", () => {
+        if (!isRunning) return;
+        isRunning = false;
+        stopTimer();
+        stopGps();
+        const distanceKm = totalDistanceMeters / 1000;
+        const avgSpeedKmh = elapsedSeconds > 0 ? distanceKm / (elapsedSeconds / 3600) : 0;
+        runStatusEl.textContent = `Holat: tugatildi. O'rtacha tezlik: ${avgSpeedKmh.toFixed(1)} km/soat.`;
+    });
+
+    resetBtn.addEventListener("click", () => {
+        isRunning = false;
+        stopTimer();
+        stopGps();
+        elapsedSeconds = 0;
+        totalDistanceMeters = 0;
+        render();
+        runStatusEl.textContent = "Holat: tayyor.";
+    });
+
+
+    render();
+    buildRunPlan();
+    calcPlanBtn.addEventListener("click", buildRunPlan);
+
+    // Shaxsiy mashq reja (bodyweight)
+    if (workoutPlanForm && workoutPlanResultEl) {
+        const blocks = {
+            warmup: [
+                "Bo'yin, yelka aylantirish (30 soniya)",
+                "Tizza/to'piq aylantirish (30 soniya)",
+                "Yengil yurish yoki step-touch (1 daqiqa)"
+            ],
+            cooldown: [
+                "Son va boldir cho'zilishi (2 daqiqa)",
+                "Ko'krak va yelka cho'zilishi (1 daqiqa)",
+                "Chuqur nafas 4-2-4 ritmda (1 daqiqa)"
+            ]
+        };
+
+        const mainPresets = {
+            beginner: {
+                general: ["Bodyweight squat 2x12", "Push-up tizzada 2x8", "Plank 2x25s", "Glute bridge 2x12"],
+                weight: ["Step-back lunge 2x10", "Keng tayanishda push-up 2x8", "Mountain climber sekin 2x20s", "Side plank 2x20s"],
+                stamina: ["March in place 2x40s", "Squat + shoulder tap 2x10", "High-knee low-impact 2x30s", "Plank 2x25s"],
+                strength: ["Goblet squat simulyatsiya 3x10", "Push-up tizzada 3x8", "Hip thrust 3x12", "Inverted row stul bilan 3x8"]
+            },
+            intermediate: {
+                general: ["Squat 3x12", "Push-up 3x10", "Plank 3x35s", "Glute bridge 3x15"],
+                weight: ["Reverse lunge 3x10", "Push-up 3x10", "Burpee low-impact 3x8", "Side plank 3x25s"],
+                stamina: ["Jumping jack / step jack 3x30s", "Air squat 3x15", "Mountain climber 3x30s", "High-knee 3x25s"],
+                strength: ["Bulgar split squat 3x8/oyoqqa", "Diamond push-up 3x8", "Hip thrust 3x15", "Superman hold 3x30s"]
+            },
+            advanced: {
+                general: ["Squat jump 3x12", "Push-up 4x12", "Plank reach 3x12", "Single-leg bridge 3x12/oyoqqa"],
+                weight: ["Walking lunge 3x12", "Pike push-up 3x10", "Burpee 3x10", "Side plank reach 3x30s"],
+                stamina: ["Jump rope/ko'rinmas arqon 4x40s", "Air squat 4x15", "Mountain climber tez 4x35s", "High-knee 4x30s"],
+                strength: ["Pistol box squat 3x8", "Decline push-up 4x10", "Hip thrust 4x15", "Dragon flag regressiyasi 3x6"]
+            }
+        };
+
+        function buildWorkoutPlan(event) {
+            event.preventDefault();
+            const level = wpLevel.value;
+            const goal = wpGoal.value;
+            const minutes = Number(wpMinutes.value);
+            const place = wpPlace.value;
+            const lowImpact = wpLowImpact.checked;
+
+            const warm = blocks.warmup;
+            const cool = blocks.cooldown;
+            const main = (mainPresets[level] && mainPresets[level][goal]) || mainPresets.beginner.general;
+
+            const filteredMain = lowImpact
+                ? main.filter((m) => !/jump|burpee|high-knee/i.test(m)) || main
+                : main;
+
+            const mainText = filteredMain.slice(0, 4).join("; ");
+            const timeSplit = `${Math.max(4, Math.round(minutes * 0.2))} daq isinish / ${Math.round(
+                minutes * 0.6
+            )} daq asosiy / ${Math.max(4, Math.round(minutes * 0.2))} daq sovutish`;
+
+            workoutPlanResultEl.innerHTML =
+                `<div class="workout-card">` +
+                `<p class="profile-badge">Muhit: ${place === "home" ? "Uy" : place === "outdoor" ? "Ko'chada" : "Zal"}</p>` +
+                `<p><strong>Vaqt taqsimoti:</strong> ${timeSplit}</p>` +
+                `<p><strong>Isinish:</strong> ${warm.join("; ")}</p>` +
+                `<p><strong>Asosiy blok:</strong> ${mainText}</p>` +
+                `<p><strong>Sovutish:</strong> ${cool.join("; ")}</p>` +
+                (lowImpact ? `<p class="menu-note">Tizza/bo'g'im sezgir rejimda sakrashsiz variantlar tanlandi.</p>` : "") +
+                `</div>`;
+        }
+
+        workoutPlanForm.addEventListener("submit", buildWorkoutPlan);
+        workoutPlanForm.dispatchEvent(new Event("submit"));
+    }
+</script>
+<script src="js/auth.js"></script>
+<script>
+    Auth.requireAuth();
+    Auth.mountNavbarAuth();
+    Auth.markActiveNav();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sog'lom hayot loyihasi bilan bog'lanish, fikr va taklif yuborish.">
+    <link rel="icon" href="images/logotip.png">
+    <title>Aloqa - Sog'lom turmush tarzi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Sog'lom turmush tarzi</h1>
+</header>
+
+<nav class="navbar" aria-label="Asosiy navigatsiya">
+    <a class="logo" href="index.html">
+    <img class="logo-icon" src="images/logotip.png" alt="Sog'lom hayot">
+    <span>Sog'lom hayot</span>
+</a>
+    <ul class="nav-links">
+        <li><a href="maqsad.html">Maqsad</a></li>
+        <li><a href="ovqatlanish.html">Ovqatlanish</a></li>
+        <li><a href="mashqlar.html">Mashqlar</a></li>
+        <li><a href="rejim.html">Rejim</a></li>
+        <li><a href="aloqa.html">Aloqa</a></li>
+    </ul>
+</nav><!-- Hero -->
+<section class="hero">
+    <h2>Aloqa</h2>
+    <p>Savollar, takliflar yoki hamkorlik uchun quyidagi manzillar orqali bog'lanishingiz mumkin.</p>
+</section>
+
+<!-- Kontaktlar -->
+<section class="features">
+    <h2>Bog'lanish</h2>
+    <ul class="contact-list">
+        <li class="contact-item">
+            <span class="contact-icon email-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                    <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm0 2l8 5 8-5"/>
+                </svg>
+            </span>
+            <span class="contact-label">Email</span>
+            <a class="contact-link" href="mailto:abdusahatovotabek812@gmail.com">abdusahatovotabek812@gmail.com</a>
+        </li>
+        <li class="contact-item">
+            <span class="contact-icon telegram-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                    <path d="M21 5.5l-2.6 13.6a1 1 0 0 1-1.4.7l-3.9-2.2-2.3 2.2a1 1 0 0 1-1.7-.7v-3.1L5.2 13a1 1 0 0 1 .2-1.7l13.8-7.2a1 1 0 0 1 1.8 1.4z"/>
+                </svg>
+            </span>
+            <span class="contact-label">Telegram</span>
+            <a class="contact-link" href="https://t.me/de_OtaBeK" target="_blank" rel="noopener">@de_OtaBeK</a>
+        </li>
+        <li class="contact-item">
+            <span class="contact-icon instagram-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                    <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm5 4.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm5.25-.75a.75.75 0 1 0 .75.75.75.75 0 0 0-.75-.75z"/>
+                </svg>
+            </span>
+            <span class="contact-label">Instagram</span>
+            <a class="contact-link" href="https://instagram.com/de_OtaBeK" target="_blank" rel="noopener">@de_OtaBeK</a>
+        </li>
+    </ul>
+</section>
+
+<!-- Qo'shimcha matn -->
+<section class="about">
+    <h2>Qo'shimcha</h2>
+    <p>
+        Sizdan kelgan har bir murojaat biz uchun muhim. Imkon qadar tezroq javob berishga harakat qilamiz.
+    </p>
+</section>
+
+<section class="feedback-section">
+    <h2>Saytda taklif qoldirish</h2>
+    <p class="feedback-intro">Telegram yoki Instagramga o'tmasdan, shu yerning o'zida fikr va taklifingizni yozib qoldiring.</p>
+    <form id="feedbackForm" class="feedback-form">
+        <label>
+            Ismingiz
+            <input id="feedbackName" name="name" type="text" placeholder="Masalan: Otabek" required>
+        </label>
+        <label>
+            Aloqa (email yoki telefon)
+            <input id="feedbackContact" name="contact" type="text" placeholder="Masalan: +998 90 123 45 67" required>
+        </label>
+        <label class="feedback-full">
+            Mavzu
+            <select id="feedbackTopic" name="topic">
+                <option value="Taklif">Taklif</option>
+                <option value="Savol">Savol</option>
+                <option value="Shikoyat">Shikoyat</option>
+                <option value="Hamkorlik">Hamkorlik</option>
+            </select>
+        </label>
+        <label class="feedback-full">
+            Xabaringiz
+            <textarea id="feedbackMessage" name="message" rows="5" placeholder="Fikr yoki g'oyangizni yozing..." required></textarea>
+        </label>
+        <button type="submit">Yuborish</button>
+    </form>
+    <p class="feedback-note">Eslatma: hozircha yuborilgan xabarlar siz ishlatayotgan brauzerda saqlanadi.</p>
+    <p id="feedbackStatus" class="feedback-status" aria-live="polite"></p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Sog'lom turmush tarzi. Barcha huquqlar himoyalangan.</p>
+</footer>
+
+<script>
+    const feedbackForm = document.getElementById("feedbackForm");
+    const feedbackStatus = document.getElementById("feedbackStatus");
+
+    function nowLabel() {
+        return new Date().toLocaleString("uz-UZ", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    }
+
+    feedbackForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const entry = {
+            name: document.getElementById("feedbackName").value.trim(),
+            contact: document.getElementById("feedbackContact").value.trim(),
+            topic: document.getElementById("feedbackTopic").value,
+            message: document.getElementById("feedbackMessage").value.trim(),
+            createdAt: nowLabel()
+        };
+
+        const storageKey = "soglom_turmush_feedback";
+        try {
+            const existing = JSON.parse(localStorage.getItem(storageKey) || "[]");
+            existing.push(entry);
+            localStorage.setItem(storageKey, JSON.stringify(existing));
+            feedbackStatus.textContent = "Rahmat. Xabaringiz qabul qilindi.";
+            feedbackForm.reset();
+        } catch (error) {
+            feedbackStatus.textContent = "Mahalliy saqlash o'chirilgan. Xabar saqlanmadi.";
+        }
+    });
+</script>
+<script src="js/auth.js"></script>
+<script>
+    Auth.requireAuth();
+    Auth.mountNavbarAuth();
+    Auth.markActiveNav();
+</script>
+</body>
+</html>

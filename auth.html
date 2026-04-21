@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sog'lom hayot platformasiga kirish va ro'yxatdan o'tish.">
+    <link rel="icon" href="images/logotip.png">
+    <title>Kirish - Sog'lom turmush tarzi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="hero-header">
+    <nav class="navbar" aria-label="Asosiy navigatsiya">
+        <a class="logo" href="index.html">
+            <img class="logo-icon" src="images/logotip.png" alt="Sog'lom hayot">
+            <span>Sog'lom hayot</span>
+        </a>
+        <ul class="nav-links"></ul>
+    </nav>
+    <div class="hero-inner auth-hero-inner">
+        <div class="hero-text">
+            <h1>Shaxsiy kabinetga kirish</h1>
+            <p>Ma'lumotlaringizni saqlash uchun akkaunt orqali kirish talab qilinadi.</p>
+        </div>
+    </div>
+</header>
+
+<section class="auth-section">
+    <div class="auth-grid">
+        <article class="auth-card">
+            <h2>Kirish</h2>
+            <p class="auth-subtitle">Avval ro'yxatdan o'tgan bo'lsangiz, email va parolni kiriting.</p>
+            <form id="loginForm" class="auth-form">
+                <label>
+                    Email
+                    <input id="loginEmail" type="email" placeholder="siz@email.com" autocomplete="email" required>
+                </label>
+                <label>
+                    Parol
+                    <input id="loginPassword" type="password" minlength="8" autocomplete="current-password" placeholder="Kamida 8 ta belgi" required>
+                </label>
+                <button type="submit">Kirish</button>
+            </form>
+        </article>
+
+        <article class="auth-card">
+            <h2>Ro'yxatdan o'tish</h2>
+            <p class="auth-subtitle">Yangi akkaunt yarating. Keyin barcha bo'limlar siz uchun ochiladi.</p>
+            <form id="registerForm" class="auth-form">
+                <label>
+                    Ism
+                    <input id="registerName" type="text" placeholder="Ismingiz" autocomplete="name" required>
+                </label>
+                <label>
+                    Email
+                    <input id="registerEmail" type="email" placeholder="siz@email.com" autocomplete="email" required>
+                </label>
+                <label>
+                    Parol
+                    <input id="registerPassword" type="password" minlength="8" autocomplete="new-password" placeholder="Kamida 8 ta belgi" required>
+                </label>
+                <label>
+                    Parolni tasdiqlang
+                    <input id="registerPassword2" type="password" minlength="8" autocomplete="new-password" placeholder="Parolni qayta kiriting" required>
+                </label>
+                <button type="submit">Ro'yxatdan o'tish</button>
+            </form>
+            <p class="auth-hint">Parol kamida 8 ta belgidan iborat bo'lsin.</p>
+        </article>
+    </div>
+    <p id="authStatus" class="auth-status" aria-live="polite">Hisobingiz bo'lsa kiring, bo'lmasa yangi akkaunt yarating.</p>
+</section>
+
+<footer>
+    <p>&copy; 2026 Sog'lom turmush tarzi. Barcha huquqlar himoyalangan.</p>
+</footer>
+
+<script src="js/auth.js"></script>
+<script>
+    const statusEl = document.getElementById("authStatus");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    function nextPage() {
+        const params = new URLSearchParams(location.search);
+        const next = params.get("next");
+        return next || "index.html";
+    }
+
+    function setStatus(message, type) {
+        statusEl.textContent = message;
+        statusEl.classList.remove("auth-status-success", "auth-status-error");
+        if (type === "success") statusEl.classList.add("auth-status-success");
+        if (type === "error") statusEl.classList.add("auth-status-error");
+    }
+
+    loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+
+        try {
+            await Auth.loginUser(email, password);
+            setStatus("Muvaffaqiyatli kirdingiz.", "success");
+            location.href = nextPage();
+        } catch (error) {
+            setStatus(error.message, "error");
+        }
+    });
+
+    registerForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById("registerName").value;
+        const email = document.getElementById("registerEmail").value;
+        const password = document.getElementById("registerPassword").value;
+        const password2 = document.getElementById("registerPassword2").value;
+
+        if (password !== password2) {
+            setStatus("Parollar bir xil emas.", "error");
+            return;
+        }
+
+        try {
+            await Auth.registerUser(name, email, password);
+            await Auth.loginUser(email, password);
+            setStatus("Akkaunt yaratildi va tizimga kirildi.", "success");
+            location.href = nextPage();
+        } catch (error) {
+            setStatus(error.message, "error");
+        }
+    });
+</script>
+<script>
+    if (window.Auth) {
+        Auth.mountNavbarAuth && Auth.mountNavbarAuth();
+        Auth.markActiveNav && Auth.markActiveNav();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,945 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Hamyonbop va shaxsiy ovqatlanish tavsiyalari, kaloriya kalkulyatori, menyu generatori va ovqat tahlili.">
+    <link rel="icon" href="images/logotip.png">
+    <title>Ovqatlanish - Sog'lom turmush tarzi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Sog'lom turmush tarzi</h1>
+</header>
+
+<nav class="navbar" aria-label="Asosiy navigatsiya">
+    <a class="logo" href="index.html">
+    <img class="logo-icon" src="images/logotip.png" alt="Sog'lom hayot">
+    <span>Sog'lom hayot</span>
+</a>
+    <ul class="nav-links">
+        <li><a href="maqsad.html">Maqsad</a></li>
+        <li><a href="ovqatlanish.html">Ovqatlanish</a></li>
+        <li><a href="mashqlar.html">Mashqlar</a></li>
+        <li><a href="rejim.html">Rejim</a></li>
+        <li><a href="aloqa.html">Aloqa</a></li>
+    </ul>
+</nav><!-- Hero -->
+<section class="hero">
+    <h2>Ovqatlanish rejasi</h2>
+    <p>Bu sahifada nonushta, tushlik (abet) va kechki ovqat uchun tavsiyalar hamda o'rtacha kaloriya me'yorlari berilgan.</p>
+</section>
+
+<!-- Kaloriya bo'yicha umumiy qoida -->
+<section class="about">
+    <h2>Kunlik kaloriya bo'yicha umumiy tavsiya</h2>
+    <p class="calorie-intro">
+        Kaloriya me'yori har bir insonda turlicha bo'ladi. Quyidagi sonlar umumiy yo'l-yo'riq bo'lib, amalda vazn, yosh va kunlik faollikka qarab moslanadi.
+    </p>
+    <div class="calorie-grid">
+        <article class="calorie-card">
+            <h3>Faollik darajasi bo'yicha</h3>
+            <ul>
+                <li>Kam harakat: 1700-2100 kkal</li>
+                <li>O'rtacha harakat: 2000-2400 kkal</li>
+                <li>Yuqori harakat: 2400-3000 kkal</li>
+            </ul>
+        </article>
+        <article class="calorie-card">
+            <h3>Maqsadga qarab</h3>
+            <ul>
+                <li>Vazn saqlash: me'yor kaloriya</li>
+                <li>Ozish: me'yoridan 250-400 kkal kam</li>
+                <li>Vazn yig'ish: me'yoridan 250-350 kkal ko'p</li>
+            </ul>
+        </article>
+        <article class="calorie-card">
+            <h3>Kunlik taqsimot</h3>
+            <ul>
+                <li>Nonushta: 25-30%</li>
+                <li>Tushlik: 35-40%</li>
+                <li>Kechki ovqat: 25-30%</li>
+                <li>Yengil tamaddi: 5-10%</li>
+            </ul>
+        </article>
+    </div>
+    <p class="calorie-note">
+        Eslatma: juda keskin kaloriya kamaytirish tavsiya etilmaydi. Natijani barqaror qilish uchun o'zgarishni bosqichma-bosqich qiling.
+    </p>
+</section>
+
+<section class="nutrition-advisor">
+    <h2>Shaxsiy ovqatlanish tavsiyasi</h2>
+    <p>Maqsad va sog'liq holatingizni tanlang. Sayt sizga umumiy xavfsiz yo'nalishni ko'rsatadi.</p>
+    <form id="nutritionForm" class="nutrition-form">
+        <label>
+            Maqsad
+            <select id="nutritionGoal">
+                <option value="maintain">Vaznni saqlash</option>
+                <option value="lose">Ozish</option>
+                <option value="gain">Vazn yig'ish</option>
+                <option value="diet">Parhez / tiklanish</option>
+            </select>
+        </label>
+        <label>
+            Sog'liq holati
+            <select id="nutritionCondition">
+                <option value="none">Jiddiy muammo yo'q</option>
+                <option value="diabetes">Qandli diabet</option>
+                <option value="hypertension">Qon bosimi yuqori</option>
+                <option value="gastritis">Gastrit / oshqozon sezgirligi</option>
+                <option value="kidney">Buyrak bilan bog'liq holat</option>
+                <option value="heart">Yurak bilan bog'liq holat</option>
+            </select>
+        </label>
+        <label>
+            Faollik darajasi
+            <select id="nutritionActivity">
+                <option value="low">Kam harakat</option>
+                <option value="medium">O'rtacha harakat</option>
+                <option value="high">Yuqori harakat</option>
+            </select>
+        </label>
+        <button type="submit">Tavsiyani chiqarish</button>
+    </form>
+    <div id="nutritionResult" class="nutrition-result" aria-live="polite"></div>
+    <p class="nutrition-warning">Eslatma: bu umumiy tavsiya. Surunkali kasalliklarda individual menyu uchun shifokor yoki dietolog bilan maslahatlashing.</p>
+    <p class="medical-flag" id="nutritionMedicalFlag" aria-live="polite"></p>
+</section>
+
+<section class="menu-plan">
+    <h2>1 haftalik menyu (beta)</h2>
+    <p>Cheklovlar va maqsadni tanlang, har kun uchun nonushta–tushlik–kechki ovqat g'oyalari chiqadi.</p>
+    <form id="menuPlanForm" class="menu-form">
+        <label>
+            Maqsad
+            <select id="menuGoal">
+                <option value="general">Umumiy sog'liq</option>
+                <option value="weight">Ozish</option>
+                <option value="gain">Vazn yig'ish</option>
+            </select>
+        </label>
+        <label>
+            Faollik darajasi
+            <select id="menuActivity">
+                <option value="low">Kam</option>
+                <option value="medium" selected>O'rtacha</option>
+                <option value="high">Yuqori</option>
+            </select>
+        </label>
+        <label>
+            Cheklov / afzallik
+            <select id="menuFilter">
+                <option value="none" selected>Cheklov yo'q</option>
+                <option value="lactose">Laktozasiz</option>
+                <option value="gluten">Glütensiz</option>
+                <option value="vegetarian">Vegetarian</option>
+            </select>
+        </label>
+        <label class="menu-budget">
+            <input id="menuBudget" type="checkbox">
+            Hamyonbop (arzon mahsulotlar)
+        </label>
+        <button type="submit">Menyuni yaratish</button>
+    </form>
+    <div id="menuPlanResult" class="menu-grid" aria-live="polite"></div>
+</section>
+
+<!-- Nonushta -->
+<section class="features">
+    <h2>Nonushta (taxminan 400-600 kkal)</h2>
+    <p class="breakfast-intro">Nonushta oqsil + murakkab uglevod + foydali yog' kombinatsiyasidan iborat bo'lsa, kun davomida to'yimlilik va energiya barqaror bo'ladi.</p>
+    <div class="breakfast-grid">
+        <article class="breakfast-card">
+            <h3>1. Omlet + sabzavot + qora non</h3>
+            <p class="meal-kcal">Taxminiy: 430-520 kkal</p>
+            <ul>
+                <li>2 dona tuxum, ko'kat va pomidorli omlet</li>
+                <li>1 bo'lak qora non</li>
+                <li>1 dona bodring yoki sabzavot salati</li>
+            </ul>
+            <p class="meal-note">Foyda: oqsil yuqori, uzoqroq to'q tutadi.</p>
+        </article>
+        <article class="breakfast-card">
+            <h3>2. Suli bo'tqasi + meva + yong'oq</h3>
+            <p class="meal-kcal">Taxminiy: 450-560 kkal</p>
+            <ul>
+                <li>50-60 g suli yormasi (suv yoki sut bilan)</li>
+                <li>1 porsiya meva (olma yoki banan)</li>
+                <li>10-15 g yong'oq</li>
+            </ul>
+            <p class="meal-note">Foyda: tolalar ko'p, energiya sekin va barqaror chiqadi.</p>
+        </article>
+        <article class="breakfast-card">
+            <h3>3. Yogurt + granola + rezavorlar</h3>
+            <p class="meal-kcal">Taxminiy: 400-500 kkal</p>
+            <ul>
+                <li>200 g tabiiy yogurt</li>
+                <li>30-40 g donli granola</li>
+                <li>Meva yoki rezavorlar qo'shimchasi</li>
+            </ul>
+            <p class="meal-note">Foyda: ichak faoliyati uchun yengil va qulay variant.</p>
+        </article>
+        <article class="breakfast-card">
+            <h3>4. Tvorog + meva + urug'lar</h3>
+            <p class="meal-kcal">Taxminiy: 420-540 kkal</p>
+            <ul>
+                <li>150-200 g tvorog</li>
+                <li>1 porsiya meva</li>
+                <li>1 choy qoshiq zig'ir yoki chia urug'i</li>
+            </ul>
+            <p class="meal-note">Foyda: mushak tiklanishi va oqsil balansini qo'llab-quvvatlaydi.</p>
+        </article>
+    </div>
+</section>
+
+<!-- Tushlik -->
+<section class="features">
+    <h2>Tushlik / Abet (taxminan 600-800 kkal)</h2>
+    <p class="lunch-intro">Tushlikda asosiy e'tibor: oqsil manbai + murakkab uglevod + sabzavot. Shu kombinatsiya kunning ikkinchi yarmida ham energiyani ushlab turadi.</p>
+    <div class="lunch-grid">
+        <article class="lunch-card">
+            <h3>1. Grechka + tovuq + salat</h3>
+            <p class="meal-kcal">Taxminiy: 620-760 kkal</p>
+            <ul>
+                <li>120-150 g tovuq go'shti</li>
+                <li>120-150 g grechka yoki guruch</li>
+                <li>Katta porsiya sabzavot salati</li>
+            </ul>
+            <p class="meal-note">Foyda: oqsil va uglevod balansi ish unumdorligini ushlab turadi.</p>
+        </article>
+        <article class="lunch-card">
+            <h3>2. Sabzavotli sho'rva + oqsil</h3>
+            <p class="meal-kcal">Taxminiy: 600-720 kkal</p>
+            <ul>
+                <li>1 kosa sabzavotli sho'rva</li>
+                <li>Qaynatilgan tuxum yoki tovuq bo'lagi</li>
+                <li>1 bo'lak qora non</li>
+            </ul>
+            <p class="meal-note">Foyda: hazm yengil, shu bilan birga to'yimlilik yaxshi.</p>
+        </article>
+        <article class="lunch-card">
+            <h3>3. Baliq + bug'da sabzavot</h3>
+            <p class="meal-kcal">Taxminiy: 610-780 kkal</p>
+            <ul>
+                <li>130-170 g baliq (pishirilgan)</li>
+                <li>Bug'da pishirilgan brokkoli/sabzi/sabzavotlar</li>
+                <li>Kichik porsiya to'liq donli garnir</li>
+            </ul>
+            <p class="meal-note">Foyda: yurak salomatligi va yallig'lanishni kamaytirishga yordam beradi.</p>
+        </article>
+        <article class="lunch-card">
+            <h3>4. To'liq donli makaron + sous</h3>
+            <p class="meal-kcal">Taxminiy: 630-790 kkal</p>
+            <ul>
+                <li>80-100 g to'liq donli makaron</li>
+                <li>Sabzavotli yoki pomidorli sous</li>
+                <li>Qoshimcha oqsil: loviya yoki go'sht bo'lagi</li>
+            </ul>
+            <p class="meal-note">Foyda: uzoq davom etadigan energiya va qulay tayyorlanish.</p>
+        </article>
+    </div>
+</section>
+
+<!-- Kechki ovqat -->
+<section class="features">
+    <h2>Kechki ovqat (taxminan 400-600 kkal)</h2>
+    <p class="dinner-intro">Kechki ovqat yengil, oqsilga boy va hazmi oson bo'lsa, uyqu sifati yaxshilanadi va ortiqcha kaloriyadan saqlaydi.</p>
+    <div class="dinner-grid">
+        <article class="dinner-card">
+            <h3>1. Yengil salat + oqsil</h3>
+            <p class="meal-kcal">Taxminiy: 420-560 kkal</p>
+            <ul>
+                <li>Katta porsiya ko'kat va sabzavot salati</li>
+                <li>120-150 g tovuq yoki baliq</li>
+                <li>1 choy qoshiq zaytun yog'i</li>
+            </ul>
+            <p class="meal-note">Foyda: to'yimli, lekin kechki payt oshqozonni og'irlashtirmaydi.</p>
+        </article>
+        <article class="dinner-card">
+            <h3>2. Tuxum + sabzavot + qatiq</h3>
+            <p class="meal-kcal">Taxminiy: 400-520 kkal</p>
+            <ul>
+                <li>2 dona qaynatilgan tuxum</li>
+                <li>Bodring, pomidor va ko'katlar</li>
+                <li>1 stakan qatiq yoki kefir</li>
+            </ul>
+            <p class="meal-note">Foyda: oqsil va kaltsiy balansi tiklanishga yordam beradi.</p>
+        </article>
+        <article class="dinner-card">
+            <h3>3. Tvorogli yengil tarelka</h3>
+            <p class="meal-kcal">Taxminiy: 410-540 kkal</p>
+            <ul>
+                <li>150-200 g tvorog</li>
+                <li>Sabzavot yoki ko'katli garnir</li>
+                <li>Yong'oqdan kichik porsiya</li>
+            </ul>
+            <p class="meal-note">Foyda: kechki oqsil mushak tiklanishini qo'llab-quvvatlaydi.</p>
+        </article>
+        <article class="dinner-card">
+            <h3>4. Sabzavotli dimlama + loviya</h3>
+            <p class="meal-kcal">Taxminiy: 430-590 kkal</p>
+            <ul>
+                <li>Sabzavotli dimlama (yog'sizroq)</li>
+                <li>Loviya yoki no'xatdan oqsil qo'shimchasi</li>
+                <li>Kichik porsiya qora non (xohishga ko'ra)</li>
+            </ul>
+            <p class="meal-note">Foyda: tolalar ko'p, kechki ochlikni nazorat qilishga yordam beradi.</p>
+        </article>
+    </div>
+</section>
+
+<!-- Qo'shimcha tavsiyalar -->
+<section class="about">
+    <h2>Qo'shimcha tavsiyalar</h2>
+    <p class="tips-intro">
+        Quyidagi oddiy odatlar ovqatlanish rejimini uzoq muddat barqaror ushlashga yordam beradi.
+    </p>
+    <ul class="tips-list">
+        <li>Kuniga 6-8 stakan suv iching, ayniqsa ovqatlar orasida suv ichishga odatlaning.</li>
+        <li>Har ovqatda oqsil manbai bo'lsin: tuxum, tvorog, tovuq, baliq yoki dukkakli mahsulotlar.</li>
+        <li>Tarelkaning kamida yarmini sabzavotlar bilan to'ldiring.</li>
+        <li>Shirinlik va gazli ichimliklarni haftasiga 1-2 marotaba bilan cheklang.</li>
+        <li>Kechki ovqatni uyqudan 2-3 soat oldin yakunlang.</li>
+        <li>Porsiya nazorati uchun kichikroq idishlardan foydalaning.</li>
+        <li>Haftalik menyuni oldindan rejalang, bu noto'g'ri tanlovlarni kamaytiradi.</li>
+    </ul>
+    <p class="tips-note">
+        Eslatma: tez natija uchun keskin parhezlardan saqlaning. Barqaror va sog'lom odatlar doimiy natija beradi.
+    </p>
+</section>
+
+<section class="food-analyzer">
+    <h2>Ovqat tahlili (rasm + miqdor)</h2>
+    <p>Ovqat rasmini yuklang, turini tanlang va gramm kiriting. Natijada kaloriya, oqsil va tavsiya etilgan porsiya chiqadi.</p>
+    <form id="foodAnalyzerForm" class="food-analyzer-form">
+        <label class="food-full">
+            Ovqat rasmi
+            <input id="foodImageInput" type="file" accept="image/*">
+        </label>
+        <label>
+            Ovqat qidirish
+            <input id="foodSearch" type="text" placeholder="Masalan: palov, baliq, makaron...">
+        </label>
+        <label>
+            Ovqat turi
+            <select id="foodType">
+                <option value="">Ovqatlar yuklanmoqda...</option>
+            </select>
+            <small class="food-manual-note">Rasm yuklamasangiz, shu yerdan qo'lda tanlang.</small>
+        </label>
+        <label>
+            Miqdori (gramm)
+            <input id="foodAmount" type="number" min="50" max="1200" value="250" required>
+        </label>
+        <label>
+            Qaysi ovqat vaqti uchun?
+            <select id="foodMealType" required>
+                <option value="breakfast">Nonushta</option>
+                <option value="lunch">Tushlik</option>
+                <option value="dinner">Kechki ovqat</option>
+                <option value="snack">Tamaddi</option>
+            </select>
+        </label>
+        <button type="submit">Hisoblash</button>
+    </form>
+    <p class="food-image-note">Izoh: rasm asosida topish beta holatda, ba'zi hollarda qo'lda tanlash kerak bo'ladi.</p>
+    <p id="foodDetectStatus" class="food-detect-status" aria-live="polite"></p>
+    <img id="foodPreview" class="food-preview" alt="Yuklangan ovqat rasmi ko'rinishi">
+    <div id="foodAnalyzerResult" class="food-analyzer-result" aria-live="polite"></div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Sog'lom turmush tarzi. Barcha huquqlar himoyalangan.</p>
+</footer>
+
+<script>
+    const nutritionForm = document.getElementById("nutritionForm");
+    const nutritionGoalEl = document.getElementById("nutritionGoal");
+    const nutritionConditionEl = document.getElementById("nutritionCondition");
+    const nutritionActivityEl = document.getElementById("nutritionActivity");
+    const nutritionResultEl = document.getElementById("nutritionResult");
+    const menuPlanForm = document.getElementById("menuPlanForm");
+    const menuPlanResultEl = document.getElementById("menuPlanResult");
+    const foodAnalyzerForm = document.getElementById("foodAnalyzerForm");
+    const foodImageInputEl = document.getElementById("foodImageInput");
+    const foodSearchEl = document.getElementById("foodSearch");
+    const foodTypeEl = document.getElementById("foodType");
+    const foodAmountEl = document.getElementById("foodAmount");
+    const foodMealTypeEl = document.getElementById("foodMealType");
+    const foodDetectStatusEl = document.getElementById("foodDetectStatus");
+    const foodPreviewEl = document.getElementById("foodPreview");
+    const foodAnalyzerResultEl = document.getElementById("foodAnalyzerResult");
+
+    const foodItems = [
+        { key: "rice_chicken", name: "Guruch + tovuq", calPer100: 175, proteinPer100: 12.0 },
+        { key: "plov", name: "Palov", calPer100: 220, proteinPer100: 6.4 },
+        { key: "lagman", name: "Lag'mon", calPer100: 165, proteinPer100: 6.2 },
+        { key: "manti", name: "Manti", calPer100: 240, proteinPer100: 9.0 },
+        { key: "samsa", name: "Somsa", calPer100: 320, proteinPer100: 10.0 },
+        { key: "shurva_beef", name: "Sho'rva (mol go'shti)", calPer100: 95, proteinPer100: 6.5 },
+        { key: "mastava", name: "Mastava", calPer100: 120, proteinPer100: 4.3 },
+        { key: "chuchvara", name: "Chuchvara", calPer100: 180, proteinPer100: 8.4 },
+        { key: "norin", name: "Norin", calPer100: 280, proteinPer100: 12.0 },
+        { key: "qozon_kabob", name: "Qozon kabob", calPer100: 260, proteinPer100: 14.5 },
+        { key: "shashlik_beef", name: "Shashlik (mol go'shti)", calPer100: 255, proteinPer100: 25.0 },
+        { key: "shashlik_chicken", name: "Shashlik (tovuq)", calPer100: 210, proteinPer100: 27.0 },
+        { key: "dolma", name: "Dolma", calPer100: 165, proteinPer100: 7.0 },
+        { key: "oatmeal", name: "Suli bo'tqasi", calPer100: 95, proteinPer100: 3.8 },
+        { key: "omelet", name: "Omlet", calPer100: 155, proteinPer100: 10.5 },
+        { key: "egg_boiled", name: "Qaynatilgan tuxum", calPer100: 143, proteinPer100: 12.6 },
+        { key: "pancakes", name: "Blinchik / pankeyk", calPer100: 227, proteinPer100: 6.4 },
+        { key: "yogurt_granola", name: "Yogurt + granola", calPer100: 140, proteinPer100: 6.2 },
+        { key: "cottage_cheese", name: "Tvorog", calPer100: 120, proteinPer100: 16.0 },
+        { key: "kefir", name: "Kefir", calPer100: 53, proteinPer100: 3.0 },
+        { key: "ayran", name: "Ayran", calPer100: 38, proteinPer100: 1.9 },
+        { key: "milk", name: "Sut (2.5%)", calPer100: 52, proteinPer100: 3.0 },
+        { key: "cheese", name: "Pishloq", calPer100: 350, proteinPer100: 23.0 },
+        { key: "fish_veggies", name: "Baliq + sabzavot", calPer100: 130, proteinPer100: 14.2 },
+        { key: "salmon", name: "Losos", calPer100: 208, proteinPer100: 20.4 },
+        { key: "tuna", name: "Tuna", calPer100: 132, proteinPer100: 28.0 },
+        { key: "chicken_breast", name: "Tovuq filesi", calPer100: 165, proteinPer100: 31.0 },
+        { key: "turkey_breast", name: "Kurka filesi", calPer100: 135, proteinPer100: 29.0 },
+        { key: "beef_lean", name: "Mol go'shti (yog'siz)", calPer100: 176, proteinPer100: 26.0 },
+        { key: "lentil_beans", name: "Loviya / yasmiq", calPer100: 116, proteinPer100: 8.7 },
+        { key: "chickpea", name: "No'xat (qaynatilgan)", calPer100: 164, proteinPer100: 8.9 },
+        { key: "soup_vegetable", name: "Sabzavotli sho'rva", calPer100: 48, proteinPer100: 2.0 },
+        { key: "vegetable_stew", name: "Sabzavotli dimlama", calPer100: 85, proteinPer100: 2.7 },
+        { key: "salad_mix", name: "Sabzavot salati", calPer100: 55, proteinPer100: 1.8 },
+        { key: "greek_salad", name: "Grek salati", calPer100: 120, proteinPer100: 3.2 },
+        { key: "achichuk_salad", name: "Achchiq-chuchuk salat", calPer100: 42, proteinPer100: 1.2 },
+        { key: "broccoli_steam", name: "Bug'da brokkoli", calPer100: 35, proteinPer100: 2.4 },
+        { key: "buckwheat", name: "Grechka", calPer100: 110, proteinPer100: 4.2 },
+        { key: "pasta_whole", name: "To'liq donli makaron", calPer100: 149, proteinPer100: 5.8 },
+        { key: "pasta_bolognese", name: "Makaron bolognese", calPer100: 180, proteinPer100: 8.0 },
+        { key: "mashed_potato", name: "Kartoshka pyuresi", calPer100: 105, proteinPer100: 2.1 },
+        { key: "boiled_potato", name: "Qaynatilgan kartoshka", calPer100: 87, proteinPer100: 1.9 },
+        { key: "bread_black", name: "Qora non", calPer100: 250, proteinPer100: 9.0 },
+        { key: "bread_white", name: "Oq non", calPer100: 265, proteinPer100: 8.2 },
+        { key: "banana", name: "Banan", calPer100: 89, proteinPer100: 1.1 },
+        { key: "apple", name: "Olma", calPer100: 52, proteinPer100: 0.3 },
+        { key: "orange", name: "Apelsin", calPer100: 47, proteinPer100: 0.9 },
+        { key: "grapes", name: "Uzum", calPer100: 69, proteinPer100: 0.7 },
+        { key: "dates", name: "Xurmo (quritilgan)", calPer100: 282, proteinPer100: 2.5 },
+        { key: "honey", name: "Asal", calPer100: 304, proteinPer100: 0.3 },
+        { key: "nuts_mix", name: "Yong'oq aralashmasi", calPer100: 607, proteinPer100: 20.0 },
+        { key: "peanut_butter", name: "Yeryong'oq pastasi", calPer100: 588, proteinPer100: 25.0 },
+        { key: "pizza_slice", name: "Pizza (1 bo'lak)", calPer100: 266, proteinPer100: 11.0 },
+        { key: "burger", name: "Burger", calPer100: 295, proteinPer100: 17.0 },
+        { key: "fries", name: "Kartoshka fri", calPer100: 312, proteinPer100: 3.4 },
+        { key: "sushi_roll", name: "Sushi roll", calPer100: 145, proteinPer100: 6.0 },
+        { key: "qurt", name: "Qurut", calPer100: 260, proteinPer100: 25.0 },
+        { key: "katyk", name: "Qatiq", calPer100: 61, proteinPer100: 3.5 },
+        { key: "suzma", name: "Suzma", calPer100: 120, proteinPer100: 10.0 },
+        { key: "kaymak", name: "Qaymoq", calPer100: 340, proteinPer100: 2.5 },
+        { key: "butter", name: "Sariyog'", calPer100: 717, proteinPer100: 0.9 },
+        { key: "ghee", name: "Sariyog' eritmasi (ghee)", calPer100: 884, proteinPer100: 0.0 },
+        { key: "sunflower_oil", name: "Kungaboqar yog'i", calPer100: 884, proteinPer100: 0.0 },
+        { key: "olive_oil", name: "Zaytun yog'i", calPer100: 884, proteinPer100: 0.0 },
+        { key: "sesame_oil", name: "Kunjut yog'i", calPer100: 884, proteinPer100: 0.0 },
+        { key: "sesame_seed", name: "Kunjut urug'i", calPer100: 573, proteinPer100: 17.7 },
+        { key: "flax_seed", name: "Zig'ir urug'i", calPer100: 534, proteinPer100: 18.3 },
+        { key: "chia_seed", name: "Chia urug'i", calPer100: 486, proteinPer100: 16.5 },
+        { key: "walnut", name: "Yong'oq", calPer100: 654, proteinPer100: 15.2 },
+        { key: "almond", name: "Bodom", calPer100: 579, proteinPer100: 21.2 },
+        { key: "pistachio", name: "Pista", calPer100: 562, proteinPer100: 20.3 },
+        { key: "hazelnut", name: "Funduk", calPer100: 628, proteinPer100: 15.0 },
+        { key: "peanut", name: "Yeryong'oq", calPer100: 567, proteinPer100: 25.8 },
+        { key: "cashew", name: "Keshyu", calPer100: 553, proteinPer100: 18.2 },
+        { key: "raisin", name: "Mayiz", calPer100: 299, proteinPer100: 3.1 },
+        { key: "dried_apricot", name: "Turshak", calPer100: 241, proteinPer100: 3.4 },
+        { key: "fig_dried", name: "Quritilgan anjir", calPer100: 249, proteinPer100: 3.3 },
+        { key: "pear", name: "Nok", calPer100: 57, proteinPer100: 0.4 },
+        { key: "peach", name: "Shaftoli", calPer100: 39, proteinPer100: 0.9 },
+        { key: "apricot", name: "O'rik", calPer100: 48, proteinPer100: 1.4 },
+        { key: "melon", name: "Qovun", calPer100: 34, proteinPer100: 0.8 },
+        { key: "watermelon", name: "Tarvuz", calPer100: 30, proteinPer100: 0.6 },
+        { key: "pomegranate", name: "Anor", calPer100: 83, proteinPer100: 1.7 },
+        { key: "persimmon", name: "Xurmo (yangi)", calPer100: 70, proteinPer100: 0.6 },
+        { key: "quince", name: "Behi", calPer100: 57, proteinPer100: 0.4 },
+        { key: "strawberry", name: "Qulupnay", calPer100: 32, proteinPer100: 0.7 },
+        { key: "cherry", name: "Gilos", calPer100: 50, proteinPer100: 1.0 },
+        { key: "plum", name: "Olxo'ri", calPer100: 46, proteinPer100: 0.7 },
+        { key: "tomato", name: "Pomidor", calPer100: 18, proteinPer100: 0.9 },
+        { key: "cucumber", name: "Bodring", calPer100: 15, proteinPer100: 0.7 },
+        { key: "carrot", name: "Sabzi", calPer100: 41, proteinPer100: 0.9 },
+        { key: "onion", name: "Piyoz", calPer100: 40, proteinPer100: 1.1 },
+        { key: "potato", name: "Kartoshka", calPer100: 77, proteinPer100: 2.0 },
+        { key: "eggplant", name: "Baqlajon", calPer100: 25, proteinPer100: 1.0 },
+        { key: "zucchini", name: "Kabachki", calPer100: 17, proteinPer100: 1.2 },
+        { key: "pumpkin", name: "Qovoq", calPer100: 26, proteinPer100: 1.0 },
+        { key: "bell_pepper", name: "Bulg'or qalampiri", calPer100: 31, proteinPer100: 1.0 },
+        { key: "cabbage", name: "Karam", calPer100: 25, proteinPer100: 1.3 },
+        { key: "cauliflower", name: "Gulkaram", calPer100: 25, proteinPer100: 1.9 },
+        { key: "spinach", name: "Ismaloq", calPer100: 23, proteinPer100: 2.9 },
+        { key: "greens_mix", name: "Ko'katlar aralashmasi", calPer100: 28, proteinPer100: 2.4 },
+        { key: "mung_bean", name: "Mosh", calPer100: 105, proteinPer100: 7.0 },
+        { key: "red_bean", name: "Qizil loviya", calPer100: 127, proteinPer100: 8.7 },
+        { key: "white_bean", name: "Oq loviya", calPer100: 139, proteinPer100: 9.7 },
+        { key: "green_peas", name: "Yashil no'xat", calPer100: 81, proteinPer100: 5.4 },
+        { key: "corn_boiled", name: "Qaynatilgan makkajo'xori", calPer100: 96, proteinPer100: 3.4 },
+        { key: "rice_boiled", name: "Qaynatilgan guruch", calPer100: 130, proteinPer100: 2.7 },
+        { key: "bulgur", name: "Bulg'ur", calPer100: 83, proteinPer100: 3.1 },
+        { key: "barley", name: "Arpa bo'tqasi", calPer100: 123, proteinPer100: 2.3 },
+        { key: "millet", name: "Tariq bo'tqasi", calPer100: 119, proteinPer100: 3.5 },
+        { key: "semolina", name: "Manniy bo'tqasi", calPer100: 98, proteinPer100: 3.0 },
+        { key: "lavash", name: "Lavash", calPer100: 275, proteinPer100: 8.0 },
+        { key: "patir", name: "Patir non", calPer100: 300, proteinPer100: 9.0 },
+        { key: "halim", name: "Halim", calPer100: 140, proteinPer100: 9.5 },
+        { key: "dimlama", name: "Dimlama", calPer100: 145, proteinPer100: 6.0 },
+        { key: "moshkhurda", name: "Moshxo'rda", calPer100: 115, proteinPer100: 5.2 },
+        { key: "qatlama", name: "Qatlama", calPer100: 330, proteinPer100: 7.0 },
+        { key: "tandir_bread", name: "Tandir non", calPer100: 280, proteinPer100: 8.5 },
+        { key: "hot_dog", name: "Hot-dog", calPer100: 290, proteinPer100: 10.0 },
+        { key: "doner", name: "Donar / shawarma", calPer100: 250, proteinPer100: 12.0 },
+        { key: "lavash_roll", name: "Lavash rulet", calPer100: 235, proteinPer100: 11.0 },
+        { key: "club_sandwich", name: "Klub sendvich", calPer100: 240, proteinPer100: 12.0 },
+        { key: "cheeseburger", name: "Chizburger", calPer100: 305, proteinPer100: 16.0 },
+        { key: "double_burger", name: "Double burger", calPer100: 335, proteinPer100: 18.0 },
+        { key: "chicken_nuggets", name: "Chicken nuggets", calPer100: 296, proteinPer100: 15.0 },
+        { key: "fried_chicken", name: "Qovurilgan tovuq", calPer100: 285, proteinPer100: 23.0 },
+        { key: "fried_wings", name: "Qovurilgan qanot", calPer100: 310, proteinPer100: 22.0 },
+        { key: "onion_rings", name: "Piyoz halqalari", calPer100: 276, proteinPer100: 4.0 },
+        { key: "chicken_wrap", name: "Tovuq wrap", calPer100: 230, proteinPer100: 14.0 },
+        { key: "donut", name: "Ponchik", calPer100: 425, proteinPer100: 5.0 },
+        { key: "croissant", name: "Kruassan", calPer100: 406, proteinPer100: 8.0 },
+        { key: "waffle", name: "Vafli", calPer100: 290, proteinPer100: 8.0 },
+        { key: "cake_slice", name: "Tort (1 bo'lak)", calPer100: 350, proteinPer100: 4.5 },
+        { key: "ice_cream", name: "Muzqaymoq", calPer100: 207, proteinPer100: 3.5 },
+        { key: "chips", name: "Chips", calPer100: 536, proteinPer100: 7.0 },
+        { key: "cracker", name: "Kreker", calPer100: 430, proteinPer100: 9.0 },
+        { key: "cola", name: "Kola / gazli ichimlik", calPer100: 42, proteinPer100: 0.0 },
+        { key: "energy_drink", name: "Energetik ichimlik", calPer100: 45, proteinPer100: 0.0 },
+        { key: "milkshake", name: "Milkshake", calPer100: 125, proteinPer100: 3.0 },
+        { key: "kasha_rice_milk", name: "Sutli guruch bo'tqasi", calPer100: 110, proteinPer100: 3.2 },
+        { key: "kasha_buckwheat_milk", name: "Sutli grechka bo'tqasi", calPer100: 120, proteinPer100: 4.0 },
+        { key: "fried_eggs", name: "Qovurilgan tuxum", calPer100: 196, proteinPer100: 13.6 },
+        { key: "scrambled_eggs", name: "Tuxum qovurma", calPer100: 180, proteinPer100: 11.5 },
+        { key: "toast_avocado", name: "Avokadoli tost", calPer100: 210, proteinPer100: 6.0 },
+        { key: "toast_cheese", name: "Pishloqli tost", calPer100: 280, proteinPer100: 11.0 },
+        { key: "toast_honey", name: "Asalli tost", calPer100: 260, proteinPer100: 6.0 },
+        { key: "sandwich_egg", name: "Tuxumli sendvich", calPer100: 230, proteinPer100: 10.0 },
+        { key: "sandwich_chicken", name: "Tovuqli sendvich", calPer100: 245, proteinPer100: 14.0 },
+        { key: "sandwich_tuna", name: "Tunali sendvich", calPer100: 230, proteinPer100: 15.0 },
+        { key: "pita_chicken", name: "Pitada tovuq", calPer100: 220, proteinPer100: 13.0 },
+        { key: "granola_bar", name: "Granola batonchik", calPer100: 390, proteinPer100: 8.0 },
+        { key: "cornflakes_milk", name: "Makkajo'xori flakes + sut", calPer100: 125, proteinPer100: 4.2 },
+        { key: "muesli", name: "Myusli", calPer100: 360, proteinPer100: 10.0 },
+        { key: "muesli_yogurt", name: "Myusli + yogurt", calPer100: 170, proteinPer100: 6.0 },
+        { key: "boiled_sausage", name: "Qaynatma kolbasa", calPer100: 260, proteinPer100: 12.0 },
+        { key: "smoked_sausage", name: "Dudlangan kolbasa", calPer100: 340, proteinPer100: 14.0 },
+        { key: "sausage_egg", name: "Sosiska + tuxum", calPer100: 240, proteinPer100: 12.0 },
+        { key: "halva", name: "Holva", calPer100: 515, proteinPer100: 12.0 },
+        { key: "jam", name: "Murabbo", calPer100: 260, proteinPer100: 0.5 },
+        { key: "chocolate", name: "Shokolad", calPer100: 540, proteinPer100: 7.0 },
+        { key: "black_coffee", name: "Qora qahva (shakarsiz)", calPer100: 2, proteinPer100: 0.3 },
+        { key: "coffee_milk", name: "Sutli qahva", calPer100: 45, proteinPer100: 1.9 },
+        { key: "cocoa_milk", name: "Kakao (sut bilan)", calPer100: 80, proteinPer100: 3.2 },
+        { key: "fresh_orange", name: "Apelsin sharbati", calPer100: 45, proteinPer100: 0.7 },
+        { key: "fresh_apple", name: "Olma sharbati", calPer100: 46, proteinPer100: 0.1 },
+        { key: "beshbarmak", name: "Beshbarmoq", calPer100: 240, proteinPer100: 12.0 },
+        { key: "hanum", name: "Xonim", calPer100: 195, proteinPer100: 7.0 },
+        { key: "khan_plov", name: "To'y oshi", calPer100: 240, proteinPer100: 7.0 },
+        { key: "achma", name: "Achma", calPer100: 330, proteinPer100: 9.0 },
+        { key: "non_kabob", name: "Non kabob", calPer100: 265, proteinPer100: 12.0 },
+        { key: "tandir_somsa", name: "Tandir somsa", calPer100: 315, proteinPer100: 10.0 },
+        { key: "somsa_pumpkin", name: "Qovoqli somsa", calPer100: 270, proteinPer100: 6.5 },
+        { key: "somsa_chicken", name: "Tovuqli somsa", calPer100: 300, proteinPer100: 11.0 },
+        { key: "somsa_potato", name: "Kartoshkali somsa", calPer100: 280, proteinPer100: 6.0 },
+        { key: "cheburek", name: "Cheburek", calPer100: 310, proteinPer100: 10.0 },
+        { key: "pirozhki", name: "Pirojki", calPer100: 285, proteinPer100: 8.0 },
+        { key: "pelmeni", name: "Pelmen", calPer100: 275, proteinPer100: 11.0 },
+        { key: "vareniki", name: "Varenik", calPer100: 220, proteinPer100: 7.0 },
+        { key: "shivit_osh", name: "Shivit oshi", calPer100: 190, proteinPer100: 7.5 },
+        { key: "naryn_horse", name: "Qazi qo'shilgan norin", calPer100: 300, proteinPer100: 14.0 },
+        { key: "sumalak", name: "Sumalak", calPer100: 180, proteinPer100: 4.0 },
+        { key: "navat", name: "Nabat", calPer100: 390, proteinPer100: 0.0 },
+        { key: "tea_green", name: "Ko'k choy (shakarsiz)", calPer100: 1, proteinPer100: 0.0 },
+        { key: "tea_black", name: "Qora choy (shakarsiz)", calPer100: 1, proteinPer100: 0.0 },
+        { key: "compote", name: "Kompot", calPer100: 45, proteinPer100: 0.2 }
+    ];
+    const foodDb = Object.fromEntries(
+        foodItems.map((item) => [item.key, { name: item.name, calPer100: item.calPer100, proteinPer100: item.proteinPer100 }])
+    );
+    let foodModel = null;
+    const menuData = {
+        breakfast: [
+            { name: "Suli bo'tqasi + olma", tags: ["vegetarian", "budget"], note: "Arzon, tolali va to'yimli" },
+            { name: "2 ta tuxum + sabzavot + qora non", tags: ["budget"], note: "Oqsil + murakkab uglevod" },
+            { name: "Yogurt + granola + rezavorlar", tags: ["vegetarian"], note: "Yengil va tez tayyor" },
+            { name: "Tvorog + urug'lar + meva", tags: ["vegetarian", "gluten"], note: "Oqsil va kaltsiy" },
+            { name: "Avokadoli tost + tuxum", tags: [], note: "Sog'lom yog' + oqsil" }
+        ],
+        lunch: [
+            { name: "Grechka + tovuq + salat", tags: ["budget"], note: "Balansli va hamyonbop" },
+            { name: "Sabzavotli sho'rva + qaynatilgan tuxum", tags: ["vegetarian", "budget"], note: "Hazmi yengil" },
+            { name: "Baliq + bug'da sabzavot + guruch", tags: [], note: "Omega-3 manbai" },
+            { name: "Loviyali salat + qora non", tags: ["vegetarian", "budget"], note: "Oqsil va tolaga boy" },
+            { name: "To'liq donli makaron + sabzavot sousi", tags: ["vegetarian"], note: "Uzoq energiya" }
+        ],
+        dinner: [
+            { name: "Yengil salat + tovuq/baliq", tags: [], note: "Kechki yengil oqsil" },
+            { name: "Tuxum + sabzavot + kefir", tags: ["budget"], note: "Tiklanishga mos" },
+            { name: "Tvorogli sabzavot tarelkasi", tags: ["vegetarian", "gluten"], note: "Oqsilga boy" },
+            { name: "Sabzavotli dimlama + loviya", tags: ["vegetarian", "gluten", "budget"], note: "Tolali va to'yimli" },
+            { name: "Baliq + brokkoli", tags: [], note: "Yengil va oqsilga boy" }
+        ]
+    };
+
+    const labelToFoodType = [
+        { keys: ["banana"], type: "banana" },
+        { keys: ["apple"], type: "apple" },
+        { keys: ["egg"], type: "egg_boiled" },
+        { keys: ["broccoli", "cucumber", "salad"], type: "salad_mix" },
+        { keys: ["soup"], type: "soup_vegetable" },
+        { keys: ["pasta", "spaghetti"], type: "pasta_whole" },
+        { keys: ["bread"], type: "bread_black" },
+        { keys: ["yogurt"], type: "yogurt_granola" },
+        { keys: ["chicken"], type: "chicken_breast" },
+        { keys: ["beef"], type: "beef_lean" },
+        { keys: ["fish", "salmon"], type: "fish_veggies" },
+        { keys: ["rice"], type: "rice_chicken" },
+        { keys: ["bean"], type: "lentil_beans" },
+        { keys: ["nut", "almond"], type: "nuts_mix" }
+    ];
+    let detectedFoodType = null;
+
+    function buildNutritionAdvice() {
+        const goal = nutritionGoalEl.value;
+        const condition = nutritionConditionEl.value;
+        const activity = nutritionActivityEl.value;
+
+        const baseCalories = {
+            low: 1900,
+            medium: 2200,
+            high: 2600
+        };
+
+        const goalDelta = {
+            maintain: 0,
+            lose: -300,
+            gain: 300,
+            diet: -150
+        };
+
+        const goalText = {
+            maintain: "Vaznni saqlash uchun kaloriyani barqaror ushlang.",
+            lose: "Ozish uchun kaloriya va porsiyani nazorat qiling.",
+            gain: "Sifatli vazn yig'ish uchun oqsil va murakkab uglevodni oshiring.",
+            diet: "Parhezda hazmi yengil va yallig'lanishni oshirmaydigan taomlar tanlang."
+        };
+
+        const conditionText = {
+            none: "Shakar va tuzni me'yorida ushlab, suv ichishni muntazam davom ettiring.",
+            diabetes: "Tez hazm bo'ladigan shakarlarni kamaytiring, uglevodlarni kun bo'yicha teng taqsimlang.",
+            hypertension: "Tuzni kamaytiring, qayta ishlangan mahsulotlarni cheklang, ko'proq sabzavot iste'mol qiling.",
+            gastritis: "Achchiq, juda yog'li va qovurilgan taomlarni kamaytirib, yumshoq pishirilgan ovqat tanlang.",
+            kidney: "Tuz va oqsil miqdorini shifokor tavsiyasiga moslang, suyuqlik rejimini nazorat qiling.",
+            heart: "Qovurilgan va trans-yog'li taomlarni cheklab, baliq, ko'kat va to'liq donni ko'paytiring."
+        };
+
+        const calories = Math.max(1400, baseCalories[activity] + goalDelta[goal]);
+        const breakfast = Math.round(calories * 0.28);
+        const lunch = Math.round(calories * 0.38);
+        const dinner = Math.round(calories * 0.27);
+        const snack = calories - breakfast - lunch - dinner;
+
+        nutritionResultEl.innerHTML =
+            `<p><strong>Kunlik yo'nalish:</strong> taxminan ${calories} kkal.</p>` +
+            `<ul>` +
+            `<li>Nonushta: ${breakfast} kkal atrofida</li>` +
+            `<li>Tushlik: ${lunch} kkal atrofida</li>` +
+            `<li>Kechki ovqat: ${dinner} kkal atrofida</li>` +
+            `<li>Yengil tamaddi: ${snack} kkal atrofida</li>` +
+            `<li><strong>Maqsad bo'yicha:</strong> ${goalText[goal]}</li>` +
+            `<li><strong>Sog'liq bo'yicha:</strong> ${conditionText[condition]}</li>` +
+            `</ul>`;
+
+        // Tibbiy xavfsizlik eslatmasi
+        const medicalFlagEl = document.getElementById("nutritionMedicalFlag");
+        if (medicalFlagEl) {
+            if (condition !== "none") {
+                medicalFlagEl.textContent = "Diqqat: sog'liq holatingiz bo'yicha menyuni shifokor bilan tasdiqlang.";
+            } else if (calories < 1500 || calories > 2800) {
+                medicalFlagEl.textContent = "Kaloriya keskin o'zgarishi mumkin. Ruxsat olish uchun shifokor bilan maslahatlashing.";
+            } else {
+                medicalFlagEl.textContent = "";
+            }
+        }
+
+        return { calories, breakfast, lunch, dinner, snack };
+    }
+
+    function getMealTargetKcal() {
+        const plan = buildNutritionAdvice();
+        const mealType = foodMealTypeEl.value;
+        if (mealType === "breakfast") return plan.breakfast;
+        if (mealType === "lunch") return plan.lunch;
+        if (mealType === "dinner") return plan.dinner;
+        return plan.snack;
+    }
+
+    function buildFoodAnalysis(typeOverride) {
+        const type = typeOverride || foodTypeEl.value;
+        const amount = Math.max(50, Number(foodAmountEl.value) || 0);
+        const mealTarget = getMealTargetKcal();
+        const food = foodDb[type];
+        if (!food) {
+            foodAnalyzerResultEl.innerHTML = "<p>Ovqat turini tanlang yoki rasm yuklang.</p>";
+            return;
+        }
+
+        const calories = (food.calPer100 * amount) / 100;
+        const protein = (food.proteinPer100 * amount) / 100;
+        const suggestedGrams = Math.max(60, Math.round((mealTarget / food.calPer100) * 100));
+        const portionRate = (amount / suggestedGrams) * 100;
+
+        let portionText = "Porsiya mos, shu atrofida davom eting.";
+        if (portionRate > 120) {
+            portionText = `Miqdor biroz yuqori. Taxminan ${suggestedGrams} g atrofida iste'mol qilish maqsadga muvofiq.`;
+        } else if (portionRate < 80) {
+            portionText = `Miqdor kamroq bo'lishi mumkin. Taxminan ${suggestedGrams} g atrofida to'liqroq bo'ladi.`;
+        }
+
+        foodAnalyzerResultEl.innerHTML =
+            `<p><strong>Tanlangan ovqat:</strong> ${food.name}</p>` +
+            `<ul>` +
+            `<li>Kiritilgan miqdor: ${amount} g</li>` +
+            `<li>Kaloriya: ${calories.toFixed(0)} kkal</li>` +
+            `<li>Oqsil: ${protein.toFixed(1)} g</li>` +
+            `<li>Tavsiya etilgan porsiya: taxminan ${suggestedGrams} g</li>` +
+            `<li>${portionText}</li>` +
+            `</ul>`;
+    }
+
+    function loadScriptOnce(src) {
+        return new Promise((resolve, reject) => {
+            if (document.querySelector(`script[src="${src}"]`)) {
+                resolve();
+                return;
+            }
+            const s = document.createElement("script");
+            s.src = src;
+            s.async = true;
+            s.onload = resolve;
+            s.onerror = reject;
+            document.body.appendChild(s);
+        });
+    }
+
+    async function ensureFoodModel() {
+        if (foodModel) return foodModel;
+        if (!window.tf) {
+            await loadScriptOnce("https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.19.0/dist/tf.min.js");
+        }
+        if (!window.mobilenet) {
+            await loadScriptOnce("https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1");
+        }
+        foodModel = await mobilenet.load({ version: 2, alpha: 1.0 });
+        return foodModel;
+    }
+
+    function pickFoodTypeFromLabel(label) {
+        const lowered = label.toLowerCase();
+        for (const mapItem of labelToFoodType) {
+            if (mapItem.keys.some((k) => lowered.includes(k))) {
+                return mapItem.type;
+            }
+        }
+        return null;
+    }
+
+    function populateFoodTypes(queryText = "") {
+        const current = foodTypeEl.value;
+        const q = queryText.trim().toLowerCase();
+        const filtered = q
+            ? foodItems.filter((item) => item.name.toLowerCase().includes(q))
+            : foodItems;
+
+        foodTypeEl.innerHTML = "";
+        if (filtered.length === 0) {
+            const noOpt = document.createElement("option");
+            noOpt.value = "";
+            noOpt.textContent = "Mos ovqat topilmadi";
+            foodTypeEl.appendChild(noOpt);
+            return;
+        }
+
+        filtered.forEach((item) => {
+            const opt = document.createElement("option");
+            opt.value = item.key;
+            opt.textContent = item.name;
+            foodTypeEl.appendChild(opt);
+        });
+
+        if (filtered.some((item) => item.key === current)) {
+            foodTypeEl.value = current;
+        } else {
+            foodTypeEl.selectedIndex = 0;
+        }
+    }
+
+    nutritionForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        buildNutritionAdvice();
+    });
+
+    async function detectFoodFromPreview() {
+        const saveData = (navigator.connection && navigator.connection.saveData) || window.matchMedia("(prefers-reduced-data: reduce)").matches;
+        if (saveData) {
+            throw new Error("Data saver yoqilgan, model yuklanmadi");
+        }
+        const model = await ensureFoodModel();
+        const predictions = await model.classify(foodPreviewEl, 4);
+        const bestMatch = predictions.find((p) => pickFoodTypeFromLabel(p.className));
+        if (!bestMatch) return null;
+        return pickFoodTypeFromLabel(bestMatch.className);
+    }
+
+    foodImageInputEl.addEventListener("change", () => {
+        const file = foodImageInputEl.files && foodImageInputEl.files[0];
+        if (!file) {
+            foodPreviewEl.removeAttribute("src");
+            foodPreviewEl.style.display = "none";
+            foodTypeEl.disabled = false;
+            detectedFoodType = null;
+            foodDetectStatusEl.textContent = "Rasm yuklanmadi. Ovqat turini qo'lda tanlang.";
+            return;
+        }
+        const imageUrl = URL.createObjectURL(file);
+        foodPreviewEl.src = imageUrl;
+        foodPreviewEl.style.display = "block";
+        foodTypeEl.disabled = true;
+        detectedFoodType = null;
+        foodDetectStatusEl.textContent = "Rasm yuklandi. Hisoblashda ovqat turi avtomatik topiladi.";
+    });
+
+    foodAnalyzerForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const file = foodImageInputEl.files && foodImageInputEl.files[0];
+        if (!file || !foodPreviewEl.src) {
+            if (!foodTypeEl.value) {
+                foodDetectStatusEl.textContent = "Ovqat turini tanlang yoki rasm yuklang.";
+                return;
+            }
+            foodTypeEl.disabled = false;
+            detectedFoodType = null;
+            foodDetectStatusEl.textContent = "Qo'lda tanlangan ovqat turi bo'yicha hisoblandi.";
+            buildFoodAnalysis();
+            return;
+        }
+
+        try {
+            foodDetectStatusEl.textContent = "Rasm tahlil qilinmoqda...";
+            const detectedType = await detectFoodFromPreview();
+            if (!detectedType) {
+                foodTypeEl.disabled = false;
+                detectedFoodType = null;
+                foodDetectStatusEl.textContent = "Rasm bo'yicha aniqlanmadi. Endi ovqat turini qo'lda tanlang.";
+                return;
+            }
+            detectedFoodType = detectedType;
+            if (![...foodTypeEl.options].some((opt) => opt.value === detectedType)) {
+                foodSearchEl.value = "";
+                populateFoodTypes();
+            }
+            foodTypeEl.value = detectedType;
+            foodDetectStatusEl.textContent = `Topildi (beta): ${foodDb[detectedType].name}.`;
+            buildFoodAnalysis(detectedFoodType);
+        } catch (error) {
+            foodTypeEl.disabled = false;
+            detectedFoodType = null;
+            foodDetectStatusEl.textContent = "Rasm tahlili ishlamadi yoki data saver yoqilgan. Qo'lda ovqat turini tanlang.";
+        }
+    });
+
+    foodSearchEl.addEventListener("input", () => {
+        populateFoodTypes(foodSearchEl.value);
+    });
+
+    populateFoodTypes();
+    buildNutritionAdvice();
+    buildFoodAnalysis();
+
+    // Menyu generator
+    if (menuPlanForm && menuPlanResultEl) {
+        const tagBlock = {
+            lactose: (item) => !/yogurt|sut|kefir|pishloq|tvorog/i.test(item.name),
+            gluten: (item) => !/non|makaron|tost|lavash/i.test(item.name),
+            vegetarian: (item) => !/tovuq|go'sht|baliq|shashlik|kabob/i.test(item.name),
+            none: () => true
+        };
+
+        function pick(arr, filterFn) {
+            const filtered = arr.filter(filterFn);
+            if (!filtered.length) return arr[Math.floor(Math.random() * arr.length)];
+            return filtered[Math.floor(Math.random() * filtered.length)];
+        }
+
+        function buildMenu(event) {
+            event.preventDefault();
+            const goal = menuGoal.value;
+            const activity = menuActivity.value;
+            const filter = menuFilter.value;
+            const budget = menuBudget.checked;
+
+            // kaloriyani oldingi kalkulyator mantiqasiga yaqinlashtiramiz
+            const baseCalories = { low: 1900, medium: 2200, high: 2600 };
+            const goalDelta = { general: 0, weight: -300, gain: 250 };
+            const total = Math.max(1400, baseCalories[activity] + (goalDelta[goal] || 0));
+
+            let html = `<p><strong>Kunlik yo'nalish:</strong> ≈ ${total} kkal. 7 kunlik menyu namunasi:</p>`;
+            html += `<p>${budget ? "Hamyonbop rejim: tuxum, dukkakli, don va mavsumiy sabzavot asosida." : ""}</p>`;
+            html += `<div class="menu-week">`;
+
+            const days = ["Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba", "Yakshanba"];
+            days.forEach((day) => {
+                const filterFn = (item) => tagBlock[filter](item) && (!budget || item.tags.includes("budget"));
+                const bf = pick(menuData.breakfast, filterFn);
+                const ln = pick(menuData.lunch, filterFn);
+                const dn = pick(menuData.dinner, filterFn);
+                html += `
+                    <article class="menu-card">
+                        <h3>${day}</h3>
+                        <p><strong>Nonushta:</strong> ${bf.name}</p>
+                        <p class="menu-note">${bf.note}</p>
+                        <p><strong>Tushlik:</strong> ${ln.name}</p>
+                        <p class="menu-note">${ln.note}</p>
+                        <p><strong>Kechki ovqat:</strong> ${dn.name}</p>
+                        <p class="menu-note">${dn.note}</p>
+                    </article>
+                `;
+            });
+
+            html += `</div>`;
+            menuPlanResultEl.innerHTML = html;
+        }
+
+        menuPlanForm.addEventListener("submit", buildMenu);
+        // default render
+        menuPlanForm.dispatchEvent(new Event("submit"));
+    }
+</script>
+<script>
+    const statusDayEl = document.getElementById("statusDay");
+    if (statusDayEl) {
+        const now = new Date();
+        statusDayEl.textContent = now.toLocaleDateString("uz-UZ", {
+            weekday: "long",
+            day: "numeric",
+            month: "long"
+        });
+    }
+</script>
+<script src="js/auth.js"></script>
+<script>
+    Auth.requireAuth();
+    Auth.mountNavbarAuth();
+    Auth.markActiveNav();
+</script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sog'lom hayot uchun ovqatlanish, mashq, uyqu va kundalik odatlar bo'yicha amaliy yo'l-yo'riqlar.">
+    <link rel="icon" href="images/logotip.png">
+    <title>Sog'lom turmush tarzi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="hero-header">
+    <nav class="navbar" aria-label="Asosiy navigatsiya">
+        <a class="logo" href="index.html">
+    <img class="logo-icon" src="images/logotip.png" alt="Sog'lom hayot">
+    <span>Sog'lom hayot</span>
+</a>
+        <ul class="nav-links">
+            <li><a href="maqsad.html">Maqsad</a></li>
+            <li><a href="ovqatlanish.html">Ovqatlanish</a></li>
+        <li><a href="mashqlar.html">Mashqlar</a></li>
+        <li><a href="rejim.html">Rejim</a></li>
+        <li><a href="aloqa.html">Aloqa</a></li>
+    </ul>
+</nav>
+    <div class="hero-inner">
+        <img class="header-logo" src="images/logotip.png" alt="Sog'lom turmush tarzi">
+        <div class="hero-text">
+            <h1>Salom! Sizga sog'lom turmush tarzini tanlashda yordam beramiz</h1>
+            <p>Bu yerda siz ovqatlanish, mashqlar, uyqu rejimi va kundalik odatlarni tartibga solish bo'yicha aniq tavsiyalar topasiz.</p>
+        </div>
+    </div>
+</header>
+
+<!-- Hero / Kirish boâ€˜limi -->
+<section class="hero">
+    <h2>Bugundan sog'lom odatlarni boshlang</h2>
+    <p>Qisqa, aniq va amaliy tavsiyalar orqali ovqatlanish, mashq, uyqu va kundalik rejimni bosqichma-bosqich yaxshilang.</p>
+</section>
+
+<!-- Personalizatsiya -->
+<section class="personalize" id="personalize">
+    <div class="personalize-head">
+        <h2>Shaxsiy yo'l-yo'riq</h2>
+        <p>Kundalik imkoniyatingizga qarab mini-reja tuzib beramiz.</p>
+    </div>
+    <form id="profileForm" class="profile-form">
+        <label>
+            Faollik darajasi
+            <select id="pfActivity" required>
+                <option value="low">Kam harakat</option>
+                <option value="medium" selected>O'rtacha</option>
+                <option value="high">Yuqori</option>
+            </select>
+        </label>
+        <label>
+            Asosiy maqsad
+            <select id="pfGoal" required>
+                <option value="general">Umumiy sog'liq</option>
+                <option value="weight">Vazn nazorati</option>
+                <option value="stamina">Chidamlilik</option>
+                <option value="stress">Stressni kamaytirish</option>
+            </select>
+        </label>
+        <label>
+            Kunlik vaqt (daq.)
+            <select id="pfMinutes" required>
+                <option value="20">10-20</option>
+                <option value="35" selected>20-40</option>
+                <option value="50">40-60</option>
+            </select>
+        </label>
+        <label>
+            Mashq muhiti
+            <select id="pfPlace" required>
+                <option value="home" selected>Uy / hovli</option>
+                <option value="outdoor">Ko'chada</option>
+                <option value="gym">Zal</option>
+            </select>
+        </label>
+        <button type="submit">Mini-rejani ko'rish</button>
+    </form>
+    <div id="profileResult" class="profile-result" aria-live="polite"></div>
+</section>
+
+<section class="quick-wins">
+    <h2>Bugungi 3 qadam</h2>
+    <p>Kichik harakatlar katta natija beradi. Belgilang va bajarilganini saqlang.</p>
+    <ul class="quick-wins-list">
+        <li><label><input type="checkbox" data-win="steps"> 10 000 qadam</label></li>
+        <li><label><input type="checkbox" data-win="water"> 7-8 stakan suv</label></li>
+        <li><label><input type="checkbox" data-win="move"> 20 daqiqa tez yurish/yengil mashq</label></li>
+    </ul>
+    <p id="quickWinsStatus" class="quick-wins-status" aria-live="polite"></p>
+</section>
+
+<section class="challenge">
+    <div class="challenge-head">
+        <h2>7 kunlik challenge</h2>
+        <p>3 oddiy vazifa: suv, qadam, uyqu. Belgilang va ketma-ketlikni saqlang.</p>
+    </div>
+    <div class="challenge-body">
+        <ul class="challenge-list" id="challengeList">
+            <li><label><input type="checkbox" data-ch="water"> 6-8 stakan suv</label></li>
+            <li><label><input type="checkbox" data-ch="steps"> 8 000+ qadam</label></li>
+            <li><label><input type="checkbox" data-ch="sleep"> 7+ soat uyqu</label></li>
+        </ul>
+        <p id="challengeStatus" class="challenge-status" aria-live="polite"></p>
+        <p class="challenge-note">Ketma-ketlik faqat bugungi kun uchun saqlanadi; har kuni qayta belgilang.</p>
+    </div>
+</section>
+
+<section class="self-note">
+    <h2>O'zimga xat</h2>
+    <p>Motivatsiya uchun qisqa xat yozing. Ma'lumot faqat shu qurilmada saqlanadi.</p>
+    <form id="selfNoteForm" class="self-note-form">
+        <textarea id="selfNoteText" rows="4" placeholder="Masalan: Nega boshlaganingizni eslating..." required></textarea>
+        <button type="submit">Saqlash</button>
+    </form>
+    <p id="selfNoteStatus" class="self-note-status" aria-live="polite"></p>
+</section>
+
+<section class="home-stats">
+    <h2>Asosiy yo'nalishlar</h2>
+    <div class="stats-grid">
+        <article class="stat-card">
+            <strong>4 ta</strong>
+            <span>Asosiy bo'lim: maqsad, ovqatlanish, mashqlar, rejim</span>
+        </article>
+        <article class="stat-card">
+            <strong>Kundalik</strong>
+            <span>Qo'llashga mos kichik qadamlar va tavsiyalar</span>
+        </article>
+        <article class="stat-card">
+            <strong>Shaxsiy</strong>
+            <span>Kalkulyator va trackerlar orqali individual yo'nalish</span>
+        </article>
+    </div>
+</section>
+
+<!-- Sayt haqida -->
+<section class="about">
+    <h2>Sayt haqida</h2>
+    <p>
+        Ushbu sayt sog'lom turmush tarzini kengroq tushunishingiz va hayotingizni yaxshilashga yordam berish uchun yaratilgan.
+        Bu yerda foydalanuvchilar to'g'ri ovqatlanish, samarali mashqlar, kuchli rejim va boshqariladigan stress haqida aniq,
+        amaliy tavsiyalar oladilar.
+    </p>
+    <p>
+        Saytning foydali tomoni shundaki, u nafaqat motivatsiya beradi, balki kundalik hayotingizga qo'llash mumkin bo'lgan
+        oddiy va real qadamlarni ham ko'rsatadi. Maqsad, ovqatlanish, mashqlar va rejim bo'limlari orqali siz o'zingiz uchun mos
+        rejani tanlashingiz, sog'lom odatlarni shakllantirishingiz va o'z natijalaringizni kuzatishingiz mumkin.
+    </p>
+    <p>
+        Ushbu platformadan foydalanishning asosiy sabablari:
+        foydangiz uchun zarur bo'lgan ma'lumotlar bitta joyda jamlangan,
+        muntazam yondashuv yordamida energiya, kayfiyat va uyqu sifati yaxshilanadi,
+        stress kamayadi va sog'likni nazorat qilish osonlashadi.
+    </p>
+</section>
+
+<!-- Saytning imkoniyatlari -->
+<section class="features">
+    <h2>Tezkor bo'limlar</h2>
+    <div class="quick-grid">
+        <a class="quick-card" href="maqsad.html">
+            <h3>Maqsad</h3>
+            <p>Shiorlar, baholash va motivatsiya vositalari.</p>
+        </a>
+        <a class="quick-card" href="ovqatlanish.html">
+            <h3>Ovqatlanish</h3>
+            <p>Katta ovqat bazasi, kaloriya va porsiya hisoblari.</p>
+        </a>
+        <a class="quick-card" href="mashqlar.html">
+            <h3>Mashqlar</h3>
+            <p>Kundalik mashq ketma-ketligi va yugurish trekeri.</p>
+        </a>
+        <a class="quick-card" href="rejim.html">
+            <h3>Rejim</h3>
+            <p>Kunlik reja va shaxsiy vazifalarni boshqarish.</p>
+        </a>
+    </div>
+</section>
+
+<!-- Sayt maqsadi -->
+<section class="goal">
+    <h2>Saytning maqsadi</h2>
+    <p>
+        Yoshlar va keng jamoatchilik orasida sog'lom turmush tarzini targ'ib qilish,
+        foydali odatlarni shakllantirish va sog'liqni mustahkamlash.
+    </p>
+    <div class="cta-row">
+        <a href="ovqatlanish.html">Ovqatlanishni boshlash</a>
+        <a href="mashqlar.html">Bugungi mashqni tanlash</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Sog'lom turmush tarzi. Barcha huquqlar himoyalangan.</p>
+    <p class="trust-note">Ma'lumotlaringiz faqat qurilmangizda saqlanadi, hech qayerga yuborilmaydi.</p>
+</footer>
+
+<script src="js/auth.js"></script>
+<script>
+    Auth.requireAuth();
+    Auth.mountNavbarAuth();
+    Auth.markActiveNav();
+
+    // Quick wins
+    (function () {
+        const storageKey = "soglom_quick_wins";
+        const statusEl = document.getElementById("quickWinsStatus");
+        const checks = document.querySelectorAll("[data-win]");
+        if (!checks.length) return;
+        function safeRead() {
+            try {
+                return JSON.parse(localStorage.getItem(storageKey) || "{}");
+            } catch (error) {
+                statusEl.textContent = "Brauzer saqlashga ruxsat bermadi.";
+                return {};
+            }
+        }
+        function safeWrite(data) {
+            try {
+                localStorage.setItem(storageKey, JSON.stringify(data));
+            } catch (error) {
+                statusEl.textContent = "Mahalliy saqlash o'chirilgan.";
+            }
+        }
+        const saved = safeRead();
+        checks.forEach((c) => {
+            c.checked = !!saved[c.dataset.win];
+            c.addEventListener("change", () => {
+                saved[c.dataset.win] = c.checked;
+                safeWrite(saved);
+                const done = Object.values(saved).filter(Boolean).length;
+                statusEl.textContent = done === checks.length ? "Zo'r! Bugungi reja bajarildi." : `${done}/${checks.length} bajarildi.`;
+            });
+        });
+        const done = Object.values(saved).filter(Boolean).length;
+        statusEl.textContent = done ? `${done}/${checks.length} bajarildi.` : "Boshladik!";
+    })();
+
+    // Personalizatsiya
+    (function () {
+        const form = document.getElementById("profileForm");
+        const resultEl = document.getElementById("profileResult");
+        if (!form || !resultEl) return;
+        const storageKey = "soglom_profile";
+
+        function safeRead() {
+            try {
+                return JSON.parse(localStorage.getItem(storageKey) || "null");
+            } catch {
+                return null;
+            }
+        }
+        function safeWrite(data) {
+            try {
+                localStorage.setItem(storageKey, JSON.stringify(data));
+            } catch {
+                /* saqlash bloklangan bo'lsa jim turamiz */
+            }
+        }
+
+        const buckets = {
+            office: {
+                title: "Ofis/uy sharoiti, vaqt kam",
+                wins: ["Har 60 daqiqada 2 daqiqa yurish/cho'zilish", "10-12kq suv (1 stakan har soat)", "Kechqurun 5 daqiqa nafas mashqi"],
+                focus: "20-30 daqiqa uy mashqlari va stol yonida stretching",
+                links: ["mashqlar.html", "rejim.html"]
+            },
+            runner: {
+                title: "Chidamlilik va yugurish",
+                wins: ["Interval yugurish 15-25 daqiqa", "5 daqiqa kuch bloki (squat/push-up)", "Suv va elektrolit balansini kuzatish"],
+                focus: "Haftasiga 4 kun yugurish + kuch bloki",
+                links: ["mashqlar.html", "ovqatlanish.html"]
+            },
+            weight: {
+                title: "Vazn nazorati",
+                wins: ["Har ovqatda oqsil + sabzavot", "Shirinlikni haftada 2 martadan oshirmaslik", "20-30 daqiqa tez yurish/yengil yugurish"],
+                focus: "Kaloriya nazorati + barqaror yurish",
+                links: ["ovqatlanish.html", "mashqlar.html"]
+            },
+            stress: {
+                title: "Stressni kamaytirish",
+                wins: ["Kechqurun 10 daqiqa nafas/meditatsiya", "Ertalab 8-10 daqiqa cho'zilish", "Uyqudan 1 soat oldin ekran yo'q"],
+                focus: "Yengil kardio + cho'zilish + uyqu gigiyenasi",
+                links: ["rejim.html", "mashqlar.html"]
+            },
+            general: {
+                title: "Umumiy sog'liq",
+                wins: ["7-8 soat uyqu", "Kuniga 7-8 stakan suv", "Kundalik 25-35 daqiqa aralash mashq"],
+                focus: "Muvozanatli ovqatlanish va aralash yuklama",
+                links: ["maqsad.html", "ovqatlanish.html", "mashqlar.html"]
+            }
+        };
+
+        function pickProfile(data) {
+            const minutes = Number(data.minutes || 35);
+            const goal = data.goal;
+            const activity = data.activity;
+            if (goal === "weight") return "weight";
+            if (goal === "stamina" && minutes >= 30) return "runner";
+            if (goal === "stress") return "stress";
+            if (activity === "low" && minutes <= 25) return "office";
+            return "general";
+        }
+
+        function render(profileKey, data) {
+            const p = buckets[profileKey] || buckets.general;
+            const list = p.wins.map((w) => `<li>${w}</li>`).join("");
+            const links = p.links
+                .map((href) => `<a class="profile-link" href="${href}">${href.replace(".html", "")}</a>`)
+                .join(" ");
+            resultEl.innerHTML =
+                `<div class="profile-card">` +
+                `<p class="profile-badge">${p.title}</p>` +
+                `<p><strong>Asosiy fokus:</strong> ${p.focus}</p>` +
+                `<p><strong>Bugungi mini-maqsadlar:</strong></p>` +
+                `<ul>${list}</ul>` +
+                `<p class="profile-links">${links}</p>` +
+                `</div>`;
+        }
+
+        const saved = safeRead();
+        if (saved) {
+            form.pfActivity.value = saved.activity;
+            form.pfGoal.value = saved.goal;
+            form.pfMinutes.value = saved.minutes;
+            form.pfPlace.value = saved.place;
+            render(saved.profile, saved);
+        }
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const data = {
+                activity: form.pfActivity.value,
+                goal: form.pfGoal.value,
+                minutes: form.pfMinutes.value,
+                place: form.pfPlace.value
+            };
+            const profile = pickProfile(data);
+            const payload = { ...data, profile };
+            safeWrite(payload);
+            render(profile, data);
+        });
+    })();
+
+    // 7 kunlik challenge (kunlik reset)
+    (function () {
+        const list = document.getElementById("challengeList");
+        const statusEl = document.getElementById("challengeStatus");
+        if (!list || !statusEl) return;
+        const key = "soglom_challenge_today";
+
+        function todayKey() {
+            const d = new Date();
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+        }
+
+        function safeRead() {
+            try {
+                return JSON.parse(localStorage.getItem(key) || "null");
+            } catch {
+                return null;
+            }
+        }
+        function safeWrite(data) {
+            try {
+                localStorage.setItem(key, JSON.stringify(data));
+            } catch {
+                /* ignore */
+            }
+        }
+
+        const saved = safeRead();
+        const today = todayKey();
+        const state = saved && saved.date === today ? saved.data : {};
+
+        const items = list.querySelectorAll("[data-ch]");
+        function render() {
+            const done = Object.values(state).filter(Boolean).length;
+            statusEl.textContent = done === items.length ? "Zo'r! Bugungi challenge bajarildi." : `${done}/${items.length} bajarildi.`;
+        }
+        items.forEach((item) => {
+            item.checked = !!state[item.dataset.ch];
+            item.addEventListener("change", () => {
+                state[item.dataset.ch] = item.checked;
+                safeWrite({ date: today, data: state });
+                render();
+            });
+        });
+        render();
+    })();
+
+    // O'zimga xat
+    (function () {
+        const form = document.getElementById("selfNoteForm");
+        const textEl = document.getElementById("selfNoteText");
+        const statusEl = document.getElementById("selfNoteStatus");
+        if (!form || !textEl || !statusEl) return;
+        const key = "soglom_self_note";
+        try {
+            const saved = localStorage.getItem(key);
+            if (saved) {
+                textEl.value = saved;
+                statusEl.textContent = "Saqlangan xat yuklandi.";
+            }
+        } catch {
+            statusEl.textContent = "Mahalliy saqlash o'chirilgan.";
+        }
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            try {
+                localStorage.setItem(key, textEl.value.trim());
+                statusEl.textContent = "Saqlandi.";
+            } catch {
+                statusEl.textContent = "Saqlash imkoni yo'q.";
+            }
+        });
+    })();
+</script>
+</body>
+</html>

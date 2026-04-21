@@ -1,0 +1,13 @@
+# Node modules (agar qo'shilgan bo'lsa)
+node_modules/
+
+# OS fayllar
+.DS_Store
+Thumbs.db
+
+# IDE fayllar
+.vscode/
+.idea/
+
+# Log fayllar
+*.log

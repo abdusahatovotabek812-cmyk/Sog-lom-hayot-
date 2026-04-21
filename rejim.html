@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Uyqu, raqamli gigiyena va shaxsiy kunlik reja uchun oddiy vositalar.">
+    <link rel="icon" href="images/logotip.png">
+    <title>Kunlik reja - Sog'lom turmush tarzi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Sog'lom turmush tarzi</h1>
+</header>
+
+<nav class="navbar" aria-label="Asosiy navigatsiya">
+    <a class="logo" href="index.html">
+    <img class="logo-icon" src="images/logotip.png" alt="Sog'lom hayot">
+    <span>Sog'lom hayot</span>
+</a>
+    <ul class="nav-links">
+        <li><a href="maqsad.html">Maqsad</a></li>
+        <li><a href="ovqatlanish.html">Ovqatlanish</a></li>
+        <li><a href="mashqlar.html">Mashqlar</a></li>
+        <li><a href="rejim.html">Rejim</a></li>
+        <li><a href="aloqa.html">Aloqa</a></li>
+    </ul>
+</nav><section class="hero">
+    <h2>Kunlik reja</h2>
+    <p>Uxlash, ovqatlanish, mashq va dam olish vaqtlarini to'g'ri tashkil qilish sog'lom odatlarni mustahkamlaydi.</p>
+</section>
+
+<section class="features">
+    <h2>Kunlik reja (namuna)</h2>
+    <ul class="daily-sample-list">
+        <li><span class="time-chip">06:30</span><span>Uyg'onish va suv ichish</span></li>
+        <li><span class="time-chip">06:45</span><span>Badantarbiya (10-20 daqiqa)</span></li>
+        <li><span class="time-chip">07:15</span><span>Nonushta</span></li>
+        <li><span class="time-chip">08:00-12:00</span><span>O'qish yoki ish faoliyati</span></li>
+        <li><span class="time-chip">12:30</span><span>Tushlik</span></li>
+        <li><span class="time-chip">13:00-15:00</span><span>Ish yoki o'qishni davom ettirish</span></li>
+        <li><span class="time-chip">15:00-15:30</span><span>Qisqa dam olish</span></li>
+        <li><span class="time-chip">15:30-18:00</span><span>Sport yoki boshqa foydali ishlar</span></li>
+        <li><span class="time-chip">18:30</span><span>Kechki ovqat</span></li>
+        <li><span class="time-chip">19:00-21:00</span><span>Oila va shaxsiy vaqt</span></li>
+        <li><span class="time-chip">21:30</span><span>Telefon va ekranlardan tanaffus</span></li>
+        <li><span class="time-chip">22:00-22:30</span><span>Uxlashga tayyorgarlik</span></li>
+        <li><span class="time-chip">22:30</span><span>Uyqu</span></li>
+    </ul>
+</section>
+
+<section class="about">
+    <h2>Qo'shimcha eslatma</h2>
+    <p>
+        Uyqu uchun 7-9 soat ajratish, ovqatlanishni bir vaqtda qilish va ekran vaqtini kechqurun kamaytirish tavsiya etiladi.
+        Rejani o'zingizga moslab asta-sekin kiritib boring.
+    </p>
+</section>
+
+<section class="day-planner">
+    <h2>Shaxsiy kunlik rejangiz</h2>
+    <p>Quyida o'zingizning vazifalaringizni vaqt bilan qo'shing. Ro'yxat brauzeringizda saqlanadi.</p>
+    <form id="dayTaskForm" class="day-task-form">
+        <label>
+            Vaqt
+            <input id="taskTime" type="time" required>
+        </label>
+        <label>
+            Vazifa
+            <input id="taskText" type="text" placeholder="Masalan: 20 daqiqa yurish" required>
+        </label>
+        <button type="submit">Qo'shish</button>
+        <button id="clearTasksBtn" type="button" class="ghost-btn">Tozalash</button>
+    </form>
+    <ul id="dayTaskList" class="day-task-list"></ul>
+    <p id="dayTaskStatus" class="day-task-status" aria-live="polite"></p>
+</section>
+
+<section class="sleep-hygiene">
+    <h2>Uyqu va raqamli gigiyena</h2>
+    <p>Uyqu sifatini oshirish uchun kichik odatlarni belgilang va maqsadli uxlash vaqtini tanlang.</p>
+    <div class="sleep-grid">
+        <div class="sleep-card">
+            <h3>Uyqu oldi chek-list</h3>
+            <ul class="sleep-list" id="sleepChecklist">
+                <li><label><input type="checkbox" data-sleep="screen_off"> Ekranlarni uxlashdan 60 daqiqa oldin o'chirish</label></li>
+                <li><label><input type="checkbox" data-sleep="light_dim"> Xonani yorug'ligini pasaytirish</label></li>
+                <li><label><input type="checkbox" data-sleep="caffeine_stop"> Oxirgi kofeinni 6 soat oldin ichish</label></li>
+                <li><label><input type="checkbox" data-sleep="stretch"> 5 daqiqalik cho'zilish/nafas mashqi</label></li>
+            </ul>
+            <p id="sleepChecklistStatus" class="sleep-note" aria-live="polite"></p>
+        </div>
+        <div class="sleep-card">
+            <h3>Uxlash vaqti eslatmasi</h3>
+            <label class="bedtime-label">
+                Maqsadli uxlash vaqti
+                <input type="time" id="bedtimeTarget" value="22:30">
+            </label>
+            <p id="bedtimeStatus" class="sleep-note" aria-live="polite"></p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Sog'lom turmush tarzi. Barcha huquqlar himoyalangan.</p>
+</footer>
+
+<script>
+    const dayTaskForm = document.getElementById("dayTaskForm");
+    const taskTimeEl = document.getElementById("taskTime");
+    const taskTextEl = document.getElementById("taskText");
+    const dayTaskListEl = document.getElementById("dayTaskList");
+    const dayTaskStatusEl = document.getElementById("dayTaskStatus");
+    const clearTasksBtn = document.getElementById("clearTasksBtn");
+    const dayTaskStorageKey = "soglom_daily_plan_items";
+
+    function getStoredTasks() {
+        try {
+            return JSON.parse(localStorage.getItem(dayTaskStorageKey) || "[]");
+        } catch (error) {
+            dayTaskStatusEl.textContent = "Mahalliy saqlash bloklangan.";
+            return [];
+        }
+    }
+
+    function saveTasks(tasks) {
+        try {
+            localStorage.setItem(dayTaskStorageKey, JSON.stringify(tasks));
+        } catch (error) {
+            dayTaskStatusEl.textContent = "Saqlab bo'lmadi (saqlash cheklangan).";
+        }
+    }
+
+    function renderTasks() {
+        const tasks = getStoredTasks();
+        dayTaskListEl.innerHTML = "";
+
+        if (tasks.length === 0) {
+            dayTaskListEl.innerHTML = "<li class='day-task-empty'>Hozircha vazifa qo'shilmagan.</li>";
+            return;
+        }
+
+        tasks.forEach((task, index) => {
+            const item = document.createElement("li");
+            item.className = "day-task-item";
+            item.innerHTML = `
+                <span class="time-chip">${task.time}</span>
+                <span class="day-task-text">${task.text}</span>
+                <button type="button" class="remove-task-btn" data-index="${index}">O'chirish</button>
+            `;
+            dayTaskListEl.appendChild(item);
+        });
+    }
+
+    dayTaskForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const time = taskTimeEl.value.trim();
+        const text = taskTextEl.value.trim();
+        if (!time || !text) return;
+
+        const tasks = getStoredTasks();
+        tasks.push({ time, text });
+        tasks.sort((a, b) => a.time.localeCompare(b.time));
+        saveTasks(tasks);
+        renderTasks();
+        dayTaskStatusEl.textContent = "Vazifa muvaffaqiyatli qo'shildi.";
+        dayTaskForm.reset();
+    });
+
+    dayTaskListEl.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLButtonElement)) return;
+        const index = Number(target.dataset.index);
+        if (!Number.isInteger(index)) return;
+
+        const tasks = getStoredTasks();
+        tasks.splice(index, 1);
+        saveTasks(tasks);
+        renderTasks();
+        dayTaskStatusEl.textContent = "Vazifa o'chirildi.";
+    });
+
+    clearTasksBtn.addEventListener("click", () => {
+        try {
+            localStorage.removeItem(dayTaskStorageKey);
+            renderTasks();
+            dayTaskStatusEl.textContent = "Ro'yxat tozalandi.";
+        } catch (error) {
+            dayTaskStatusEl.textContent = "Saqlash tozalanmadi (cheklov).";
+        }
+    });
+
+    renderTasks();
+
+    // Uyqu cheklist
+    if (sleepChecklistEl) {
+        function safeReadSleep() {
+            try {
+                return JSON.parse(localStorage.getItem(sleepChecklistKey) || "{}");
+            } catch {
+                return {};
+            }
+        }
+        function safeWriteSleep(data) {
+            try {
+                localStorage.setItem(sleepChecklistKey, JSON.stringify(data));
+            } catch {
+                /* ignore */
+            }
+        }
+        const sleepState = safeReadSleep();
+        const items = sleepChecklistEl.querySelectorAll("[data-sleep]");
+        function updateSleepStatus() {
+            const done = Object.values(sleepState).filter(Boolean).length;
+            sleepChecklistStatusEl.textContent =
+                done === items.length
+                    ? "Ajoyib! Kechki odatlar bajarildi."
+                    : `${done}/${items.length} band bajarildi.`;
+        }
+        items.forEach((item) => {
+            item.checked = !!sleepState[item.dataset.sleep];
+            item.addEventListener("change", () => {
+                sleepState[item.dataset.sleep] = item.checked;
+                safeWriteSleep(sleepState);
+                updateSleepStatus();
+            });
+        });
+        updateSleepStatus();
+    }
+
+    // Bedtime reminder
+    if (bedtimeTargetEl && bedtimeStatusEl) {
+        function safeReadBed() {
+            try {
+                return localStorage.getItem(bedtimeKey) || "";
+            } catch {
+                return "";
+            }
+        }
+        function safeWriteBed(val) {
+            try {
+                localStorage.setItem(bedtimeKey, val);
+            } catch {
+                /* ignore */
+            }
+        }
+        const savedBed = safeReadBed();
+        if (savedBed) bedtimeTargetEl.value = savedBed;
+
+        function diffText() {
+            const target = bedtimeTargetEl.value || "22:30";
+            const now = new Date();
+            const [h, m] = target.split(":").map(Number);
+            const targetDate = new Date(now);
+            targetDate.setHours(h || 22, m || 30, 0, 0);
+            if (targetDate < now) targetDate.setDate(targetDate.getDate() + 1);
+            const diffMs = targetDate - now;
+            const diffMin = Math.round(diffMs / 60000);
+            const hours = Math.floor(diffMin / 60);
+            const mins = diffMin % 60;
+            return diffMin <= 0 ? "Uxlash vaqti yetdi." : `Taxminan ${hours} soat ${mins} daqiqa qoldi.`;
+        }
+
+        function renderBedtime() {
+            bedtimeStatusEl.textContent = diffText();
+        }
+
+        bedtimeTargetEl.addEventListener("change", () => {
+            safeWriteBed(bedtimeTargetEl.value);
+            renderBedtime();
+        });
+
+        renderBedtime();
+        setInterval(renderBedtime, 30000);
+    }
+</script>
+<script src="js/auth.js"></script>
+<script>
+    Auth.requireAuth();
+    Auth.mountNavbarAuth();
+    Auth.markActiveNav();
+</script>
+</body>
+</html>

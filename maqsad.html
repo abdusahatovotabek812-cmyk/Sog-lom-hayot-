@@ -1,0 +1,517 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sog'lom turmush tarzini shakllantirish uchun maqsadlar, motivatsiya va progress kuzatuvi.">
+    <link rel="icon" href="images/logotip.png">
+    <title>Maqsadlar - Sog'lom turmush tarzi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Sog'lom turmush tarzi</h1>
+</header>
+
+<nav class="navbar" aria-label="Asosiy navigatsiya">
+    <a class="logo" href="index.html">
+    <img class="logo-icon" src="images/logotip.png" alt="Sog'lom hayot">
+    <span>Sog'lom hayot</span>
+</a>
+    <ul class="nav-links">
+        <li><a href="maqsad.html">Maqsad</a></li>
+        <li><a href="ovqatlanish.html">Ovqatlanish</a></li>
+        <li><a href="mashqlar.html">Mashqlar</a></li>
+        <li><a href="rejim.html">Rejim</a></li>
+        <li><a href="aloqa.html">Aloqa</a></li>
+    </ul>
+</nav><!-- Hero -->
+<section class="hero">
+    <h2>Maqsadlarimiz</h2>
+    <p>Bu sahifada sog'lom turmush tarzini shakllantirish uchun asosiy maqsadlar va ularning foydasi haqida qisqa va aniq ma'lumotlar beriladi.</p>
+</section>
+
+<!-- Maqsadlar ro'yxati -->
+<section class="features">
+    <h2>Asosiy maqsadlar</h2>
+    <p class="goal-intro">Maqsadlar aniq bo'lsa, yo'l ham aniq bo'ladi. Quyidagi 4 yo'nalish barqaror natija beradi.</p>
+    <div class="goal-pillars">
+        <article class="goal-card">
+            <h3>1. Ovqatlanish intizomi</h3>
+            <p class="goal-card-label">Nima qilish kerak:</p>
+            <p>Har kuni muvozanatli nonushta, sabzavot va oqsilga boy ovqat tanlash.</p>
+            <p class="goal-card-label">Kutiladigan natija:</p>
+            <p>Energiya oshadi, ortiqcha tamaddi kamayadi va vazn nazorati osonlashadi.</p>
+        </article>
+        <article class="goal-card">
+            <h3>2. Jismoniy faollik</h3>
+            <p class="goal-card-label">Nima qilish kerak:</p>
+            <p>Haftasiga 4-5 kun kamida 25-40 daqiqa mashq yoki tez yurish.</p>
+            <p class="goal-card-label">Kutiladigan natija:</p>
+            <p>Chidamlilik oshadi, tanadagi taranglik kamayadi, umumiy holat yaxshilanadi.</p>
+        </article>
+        <article class="goal-card">
+            <h3>3. Sifatli uyqu</h3>
+            <p class="goal-card-label">Nima qilish kerak:</p>
+            <p>Har kuni bir xil vaqtda uxlash, kechasi ekran vaqtini kamaytirish.</p>
+            <p class="goal-card-label">Kutiladigan natija:</p>
+            <p>Ertalab yengil uyg'onish, kayfiyat barqarorligi va diqqat kuchayishi.</p>
+        </article>
+        <article class="goal-card">
+            <h3>4. Ruhiy barqarorlik</h3>
+            <p class="goal-card-label">Nima qilish kerak:</p>
+            <p>Har kuni 10 daqiqa nafas mashqi, qisqa dam va o'zingizga vaqt ajratish.</p>
+            <p class="goal-card-label">Kutiladigan natija:</p>
+            <p>Stress pasayadi, sabr va motivatsiya oshadi, reja uzluksiz davom etadi.</p>
+        </article>
+    </div>
+</section>
+
+<section class="about">
+    <h2>Motivatsion iqtibos yoki shior</h2>
+    <div class="quote-head">
+        <span class="quote-badge">Bugungi shior</span>
+        <button id="nextQuoteBtn" type="button" class="quote-btn">Yana shior</button>
+    </div>
+    <blockquote id="motivationQuoteText" class="motivation-quote">
+        "Kichik qadamlar, katta natija. Har kuni o'zingiz uchun kamida 1% yaxshiroq bo'ling."
+    </blockquote>
+    <p id="motivationQuoteAuthor" class="motivation-author">- Sog'lom hayot eslatmasi</p>
+</section>
+
+<section class="goal-progress">
+    <h2>Oldin / Keyin holat</h2>
+    <p>Boshlanishdagi holatingiz va 1 oydan keyingi natijangizni yozib boring.</p>
+    <form id="goalProgressForm" class="goal-progress-form">
+        <label>
+            Boshlanish sanasi
+            <input id="goalStartDate" type="date" required>
+        </label>
+        <label>
+            Tekshiruv sanasi (1 oy keyin)
+            <input id="goalCheckDate" type="date" required>
+        </label>
+        <label class="goal-full">
+            Oldin (boshlanish holati)
+            <textarea id="goalBefore" rows="4" placeholder="Masalan: Tez charchardim, uyqu notinch edi..." required></textarea>
+        </label>
+        <label class="goal-full">
+            Keyin (hozirgi natija)
+            <textarea id="goalAfter" rows="4" placeholder="Masalan: Energiya oshdi, ertalab yengil turaman..." required></textarea>
+        </label>
+        <button type="submit">Saqlash</button>
+    </form>
+    <p id="goalProgressStatus" class="goal-progress-status" aria-live="polite"></p>
+</section>
+
+<section class="goal-calculator">
+    <h2>Maqsad kalkulyatori</h2>
+    <p>Quyidagi ma'lumotlarni kiriting, sizga mos mini-reja avtomatik chiqadi.</p>
+    <form id="goalCalcForm" class="goal-calc-form">
+        <label>
+            Haftada necha kun mashq qila olasiz?
+            <input id="calcDays" type="number" min="1" max="7" value="4" required>
+        </label>
+        <label>
+            Kuniga necha daqiqa ajratasiz?
+            <input id="calcMinutes" type="number" min="10" max="180" value="35" required>
+        </label>
+        <label>
+            O'rtacha uyqu (soat)
+            <input id="calcSleep" type="number" min="4" max="10" step="0.5" value="7.5" required>
+        </label>
+        <label>
+            Asosiy maqsad
+            <select id="calcGoal" required>
+                <option value="general">Umumiy sog'liq</option>
+                <option value="weight">Vazn nazorati</option>
+                <option value="stamina">Chidamlilik</option>
+                <option value="stress">Stressni kamaytirish</option>
+            </select>
+        </label>
+        <button type="submit">Rejani hisobla</button>
+    </form>
+    <div id="goalCalcResult" class="goal-calc-result" aria-live="polite"></div>
+</section>
+
+<section class="weekly-review">
+    <h2>Haftalik baholash</h2>
+    <p>Hafta yakunida quyidagi savollarni 1 dan 5 gacha baholang (1 - past, 5 - a'lo).</p>
+    <form id="weeklyReviewForm" class="weekly-review-form">
+        <label>
+            Rejani necha kun davomida bajardingiz?
+            <input id="reviewConsistency" type="range" min="1" max="5" value="3">
+            <span class="review-value" id="reviewConsistencyValue">3</span>
+        </label>
+        <label>
+            Energiya darajangiz qanday bo'ldi?
+            <input id="reviewEnergy" type="range" min="1" max="5" value="3">
+            <span class="review-value" id="reviewEnergyValue">3</span>
+        </label>
+        <label>
+            Uyqu sifati qanday bo'ldi?
+            <input id="reviewSleep" type="range" min="1" max="5" value="3">
+            <span class="review-value" id="reviewSleepValue">3</span>
+        </label>
+        <label>
+            Stressni boshqarish darajangiz qanday bo'ldi?
+            <input id="reviewStress" type="range" min="1" max="5" value="3">
+            <span class="review-value" id="reviewStressValue">3</span>
+        </label>
+        <label>
+            Oziqlanish intizomi qanday bo'ldi?
+            <input id="reviewFood" type="range" min="1" max="5" value="3">
+            <span class="review-value" id="reviewFoodValue">3</span>
+        </label>
+        <label class="goal-full">
+            Qisqa izoh
+            <textarea id="reviewNote" rows="3" placeholder="Nima yaxshi bo'ldi, nimani yaxshilash kerak?"></textarea>
+        </label>
+        <button type="submit">Baholashni saqlash</button>
+    </form>
+    <div id="weeklyReviewResult" class="weekly-review-result" aria-live="polite"></div>
+</section>
+
+<section class="reward-system">
+    <h2>Mukofot tizimi</h2>
+    <p>Rejani ketma-ket bajarganingiz uchun o'zingizni kichik sovg'a bilan rag'batlantiring.</p>
+    <div class="reward-top">
+        <p class="reward-streak">Ketma-ket bajarilgan kunlar: <strong id="streakCount">0</strong></p>
+        <p class="reward-next" id="nextRewardText"></p>
+    </div>
+    <div class="reward-actions">
+        <button id="checkInBtn" type="button">Bugungi vazifani bajardim</button>
+        <button id="resetStreakBtn" type="button" class="ghost-btn">Streakni noldan boshlash</button>
+    </div>
+    <ul class="reward-milestones" id="rewardMilestones"></ul>
+    <p id="rewardStatus" class="reward-status" aria-live="polite"></p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Sog'lom turmush tarzi. Barcha huquqlar himoyalangan.</p>
+</footer>
+
+<script>
+    const goalProgressForm = document.getElementById("goalProgressForm");
+    const goalStartDateEl = document.getElementById("goalStartDate");
+    const goalCheckDateEl = document.getElementById("goalCheckDate");
+    const goalBeforeEl = document.getElementById("goalBefore");
+    const goalAfterEl = document.getElementById("goalAfter");
+    const goalProgressStatusEl = document.getElementById("goalProgressStatus");
+    const goalProgressStorageKey = "soglom_goal_before_after";
+    const goalCalcForm = document.getElementById("goalCalcForm");
+    const calcDaysEl = document.getElementById("calcDays");
+    const calcMinutesEl = document.getElementById("calcMinutes");
+    const calcSleepEl = document.getElementById("calcSleep");
+    const calcGoalEl = document.getElementById("calcGoal");
+    const goalCalcResultEl = document.getElementById("goalCalcResult");
+    const weeklyReviewForm = document.getElementById("weeklyReviewForm");
+    const reviewConsistencyEl = document.getElementById("reviewConsistency");
+    const reviewEnergyEl = document.getElementById("reviewEnergy");
+    const reviewSleepEl = document.getElementById("reviewSleep");
+    const reviewStressEl = document.getElementById("reviewStress");
+    const reviewFoodEl = document.getElementById("reviewFood");
+    const reviewNoteEl = document.getElementById("reviewNote");
+    const weeklyReviewResultEl = document.getElementById("weeklyReviewResult");
+    const weeklyReviewStorageKey = "soglom_weekly_review";
+    const streakCountEl = document.getElementById("streakCount");
+    const nextRewardTextEl = document.getElementById("nextRewardText");
+    const rewardMilestonesEl = document.getElementById("rewardMilestones");
+    const rewardStatusEl = document.getElementById("rewardStatus");
+    const checkInBtn = document.getElementById("checkInBtn");
+    const resetStreakBtn = document.getElementById("resetStreakBtn");
+    const nextQuoteBtn = document.getElementById("nextQuoteBtn");
+    const motivationQuoteTextEl = document.getElementById("motivationQuoteText");
+    const motivationQuoteAuthorEl = document.getElementById("motivationQuoteAuthor");
+    const rewardStorageKey = "soglom_reward_streak";
+    const rewardMilestones = [
+        { day: 3, reward: "Sevimli film yoki serialning 1 qismini tomosha qiling." },
+        { day: 7, reward: "O'zingizga foydali kichik sovg'a oling (masalan, yangi sport sochiq)." },
+        { day: 14, reward: "Yaqin joyga yoqimli sayr yoki mini-dam olish rejalang." },
+        { day: 21, reward: "Sog'lom menyudan maxsus kechki ovqat tayyorlang." },
+        { day: 30, reward: "Yangi sport anjomi yoki kitob bilan o'zingizni rag'batlantiring." }
+    ];
+    const quoteList = [
+        { text: "Kichik qadamlar, katta natija. Har kuni o'zingiz uchun kamida 1% yaxshiroq bo'ling.", author: "Sog'lom hayot eslatmasi" },
+        { text: "Mukammallik emas, muntazamlik natija beradi.", author: "Kunlik intizom qoidasi" },
+        { text: "Bugun qilgan kichik harakatingiz, ertangi kuchli holatingizni yaratadi.", author: "Sog'lom odat tamoyili" },
+        { text: "O'zingizga bergan va'dangizga sodiq qolish - eng katta g'alaba.", author: "Shaxsiy motivatsiya" },
+        { text: "Tez emas, to'xtamasdan yurish muhim.", author: "Barqarorlik shiori" }
+    ];
+    let currentQuoteIndex = 0;
+
+    function loadGoalProgress() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(goalProgressStorageKey) || "null");
+            if (!saved) return;
+            goalStartDateEl.value = saved.startDate || "";
+            goalCheckDateEl.value = saved.checkDate || "";
+            goalBeforeEl.value = saved.before || "";
+            goalAfterEl.value = saved.after || "";
+        } catch (error) {
+            goalProgressStatusEl.textContent = "Mahalliy saqlashga ruxsat berilmadi.";
+        }
+    }
+
+    goalProgressForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const payload = {
+            startDate: goalStartDateEl.value,
+            checkDate: goalCheckDateEl.value,
+            before: goalBeforeEl.value.trim(),
+            after: goalAfterEl.value.trim()
+        };
+        try {
+            localStorage.setItem(goalProgressStorageKey, JSON.stringify(payload));
+            goalProgressStatusEl.textContent = "Oldin/Keyin holat saqlandi.";
+        } catch (error) {
+            goalProgressStatusEl.textContent = "Saqlab bo'lmadi (saqlash bloklangan).";
+        }
+    });
+
+    function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+    }
+
+    function todayKey() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const day = String(now.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    }
+
+    function dayDiff(fromDate, toDate) {
+        const oneDayMs = 24 * 60 * 60 * 1000;
+        const a = new Date(fromDate + "T00:00:00");
+        const b = new Date(toDate + "T00:00:00");
+        return Math.round((b - a) / oneDayMs);
+    }
+
+    function renderQuote(index) {
+        const safeIndex = clamp(index, 0, quoteList.length - 1);
+        currentQuoteIndex = safeIndex;
+        const item = quoteList[safeIndex];
+        motivationQuoteTextEl.textContent = `"${item.text}"`;
+        motivationQuoteAuthorEl.textContent = `- ${item.author}`;
+    }
+
+    function showRandomQuote() {
+        if (quoteList.length <= 1) {
+            renderQuote(0);
+            return;
+        }
+        let next = currentQuoteIndex;
+        while (next === currentQuoteIndex) {
+            next = Math.floor(Math.random() * quoteList.length);
+        }
+        renderQuote(next);
+    }
+
+    function buildGoalPlan() {
+        const days = clamp(Number(calcDaysEl.value) || 4, 1, 7);
+        const minutes = clamp(Number(calcMinutesEl.value) || 30, 10, 180);
+        const sleep = clamp(Number(calcSleepEl.value) || 7, 4, 10);
+        const goal = calcGoalEl.value;
+
+        const weeklyMinutes = days * minutes;
+        let cardioRatio = 0.6;
+        let strengthRatio = 0.3;
+        let recoveryRatio = 0.1;
+        let focusText = "barqaror odat va umumiy sog'liq";
+
+        if (goal === "weight") {
+            cardioRatio = 0.65;
+            strengthRatio = 0.25;
+            recoveryRatio = 0.1;
+            focusText = "kaloriya sarfi va vazn nazorati";
+        } else if (goal === "stamina") {
+            cardioRatio = 0.7;
+            strengthRatio = 0.2;
+            recoveryRatio = 0.1;
+            focusText = "nafas va yurak chidamliligi";
+        } else if (goal === "stress") {
+            cardioRatio = 0.45;
+            strengthRatio = 0.2;
+            recoveryRatio = 0.35;
+            focusText = "asab tizimini tinchlantirish va tiklanish";
+        }
+
+        const cardioMin = Math.round(weeklyMinutes * cardioRatio);
+        const strengthMin = Math.round(weeklyMinutes * strengthRatio);
+        const recoveryMin = Math.max(20, Math.round(weeklyMinutes * recoveryRatio));
+        const sleepAdvice = sleep < 7
+            ? "Uyqu 7 soatdan kam. Natija uchun uyquni 7-8 soatga yaqinlashtiring."
+            : "Uyqu darajasi yaxshi. Shu ritmni saqlang.";
+
+        goalCalcResultEl.innerHTML =
+            `<p><strong>Shaxsiy mini-reja:</strong> Haftasiga ${days} kun, jami ${weeklyMinutes} daqiqa faoliyat. Asosiy fokus: ${focusText}.</p>` +
+            `<ul>` +
+            `<li>Kardio: taxminan ${cardioMin} daqiqa/hafta (tez yurish, yengil yugurish, velotrenajyor).</li>` +
+            `<li>Kuch mashqlari: taxminan ${strengthMin} daqiqa/hafta (squat, push-up, plank).</li>` +
+            `<li>Tiklanish va cho'zilish: kamida ${recoveryMin} daqiqa/hafta.</li>` +
+            `<li>Uyqu tavsiyasi: ${sleepAdvice}</li>` +
+            `</ul>`;
+    }
+
+    goalCalcForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        buildGoalPlan();
+    });
+
+    function syncRangeValue(rangeEl, valueElId) {
+        const valueEl = document.getElementById(valueElId);
+        valueEl.textContent = rangeEl.value;
+        rangeEl.addEventListener("input", () => {
+            valueEl.textContent = rangeEl.value;
+        });
+    }
+
+    function reviewSummaryText(avg) {
+        if (avg >= 4.5) return "A'lo natija. Keyingi haftada shu ritmni saqlang.";
+        if (avg >= 3.5) return "Yaxshi natija. Kuchsiz nuqtalarga ozgina ko'proq e'tibor qarating.";
+        if (avg >= 2.5) return "O'rtacha natija. Rejani soddalashtirib, barqarorlikni oshiring.";
+        return "Boshlanish uchun normal. Kelasi hafta kichik va aniq maqsad qo'ying.";
+    }
+
+    function renderWeeklyReview(saved) {
+        if (!saved) {
+            weeklyReviewResultEl.innerHTML = "<p>Hozircha haftalik baholash saqlanmagan.</p>";
+            return;
+        }
+        const avg = saved.average;
+        weeklyReviewResultEl.innerHTML =
+            `<p><strong>Oxirgi baholash:</strong> ${saved.date}</p>` +
+            `<p><strong>O'rtacha ball:</strong> ${avg.toFixed(1)} / 5</p>` +
+            `<p><strong>Xulosa:</strong> ${reviewSummaryText(avg)}</p>` +
+            (saved.note ? `<p><strong>Izoh:</strong> ${saved.note}</p>` : "");
+    }
+
+    weeklyReviewForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const scores = [
+            Number(reviewConsistencyEl.value),
+            Number(reviewEnergyEl.value),
+            Number(reviewSleepEl.value),
+            Number(reviewStressEl.value),
+            Number(reviewFoodEl.value)
+        ];
+        const average = scores.reduce((sum, n) => sum + n, 0) / scores.length;
+        const payload = {
+            date: new Date().toLocaleDateString("uz-UZ"),
+            scores,
+            average,
+            note: reviewNoteEl.value.trim()
+        };
+        try {
+            localStorage.setItem(weeklyReviewStorageKey, JSON.stringify(payload));
+            renderWeeklyReview(payload);
+        } catch (error) {
+            weeklyReviewResultEl.innerHTML = "<p>Saqlash bloklangan. Natija ko'rsatilmaydi.</p>";
+        }
+    });
+
+    function readRewardState() {
+        try {
+            return JSON.parse(localStorage.getItem(rewardStorageKey) || "{\"streak\":0,\"lastCheckIn\":\"\"}");
+        } catch (error) {
+            rewardStatusEl.textContent = "Saqlash ishlamayapti.";
+            return { streak: 0, lastCheckIn: "" };
+        }
+    }
+
+    function writeRewardState(state) {
+        try {
+            localStorage.setItem(rewardStorageKey, JSON.stringify(state));
+        } catch (error) {
+            rewardStatusEl.textContent = "Saqlash bloklangan.";
+        }
+    }
+
+    function renderRewardMilestones(streak) {
+        rewardMilestonesEl.innerHTML = "";
+        rewardMilestones.forEach((item) => {
+            const reached = streak >= item.day;
+            const li = document.createElement("li");
+            li.className = reached ? "milestone reached" : "milestone";
+            li.innerHTML = `<strong>${item.day}-kun:</strong> ${item.reward}`;
+            rewardMilestonesEl.appendChild(li);
+        });
+    }
+
+    function renderRewardSystem() {
+        const state = readRewardState();
+        const streak = Number(state.streak) || 0;
+        streakCountEl.textContent = String(streak);
+        renderRewardMilestones(streak);
+
+        const next = rewardMilestones.find((item) => item.day > streak);
+        if (!next) {
+            nextRewardTextEl.textContent = "Ajoyib. Siz barcha bosqich mukofotlariga yetdingiz, yangi 30 kunlik sikl boshlang.";
+        } else {
+            const left = next.day - streak;
+            nextRewardTextEl.textContent = `Keyingi mukofot: ${next.day}-kunda. Qoldi: ${left} kun.`;
+        }
+    }
+
+    checkInBtn.addEventListener("click", () => {
+        const state = readRewardState();
+        const today = todayKey();
+        const last = state.lastCheckIn;
+
+        if (last === today) {
+            rewardStatusEl.textContent = "Bugungi belgi allaqachon qo'yilgan.";
+            return;
+        }
+
+        if (!last) {
+            state.streak = 1;
+        } else {
+            const diff = dayDiff(last, today);
+            state.streak = diff === 1 ? state.streak + 1 : 1;
+        }
+
+        state.lastCheckIn = today;
+        writeRewardState(state);
+        renderRewardSystem();
+        rewardStatusEl.textContent = `Zo'r. ${state.streak} kunlik streak saqlandi.`;
+    });
+
+    resetStreakBtn.addEventListener("click", () => {
+        writeRewardState({ streak: 0, lastCheckIn: "" });
+        renderRewardSystem();
+        rewardStatusEl.textContent = "Streak noldan boshlandi.";
+    });
+
+    nextQuoteBtn.addEventListener("click", showRandomQuote);
+
+    syncRangeValue(reviewConsistencyEl, "reviewConsistencyValue");
+    syncRangeValue(reviewEnergyEl, "reviewEnergyValue");
+    syncRangeValue(reviewSleepEl, "reviewSleepValue");
+    syncRangeValue(reviewStressEl, "reviewStressValue");
+    syncRangeValue(reviewFoodEl, "reviewFoodValue");
+
+    let savedReview = null;
+    try {
+        savedReview = JSON.parse(localStorage.getItem(weeklyReviewStorageKey) || "null");
+    } catch (error) {
+        weeklyReviewResultEl.innerHTML = "<p>Mahalliy saqlashga ruxsat berilmadi.</p>";
+    }
+    renderWeeklyReview(savedReview);
+    renderRewardSystem();
+    renderQuote(0);
+    loadGoalProgress();
+    buildGoalPlan();
+</script>
+<script src="js/auth.js"></script>
+<script>
+    Auth.requireAuth();
+    Auth.mountNavbarAuth();
+    Auth.markActiveNav();
+</script>
+ 
+</body>
+</html>
