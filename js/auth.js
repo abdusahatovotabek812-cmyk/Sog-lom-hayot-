@@ -1,6 +1,7 @@
 (function () {
     const USERS_KEY = "soglom_users_v1";
     const SESSION_KEY = "soglom_session_v1";
+    const ADMIN_EMAIL = "abdusahatovotabek812@gmail.com";
 
     function getUsers() {
         return JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
@@ -84,6 +85,26 @@
         return null;
     }
 
+    function isAdmin(session) {
+        return session && session.email === ADMIN_EMAIL;
+    }
+
+    function requireAdmin() {
+        const session = requireAuth();
+        if (!session) return null;
+        if (!isAdmin(session)) {
+            location.href = "index.html";
+            return null;
+        }
+        return session;
+    }
+
+    function deleteUser(userId) {
+        let users = getUsers();
+        users = users.filter(u => u.id !== userId);
+        setUsers(users);
+    }
+
     function mountNavbarAuth() {
         const navLinks = document.querySelector(".nav-links");
         if (!navLinks) return;
@@ -120,7 +141,97 @@
                 localStorage.setItem("theme_pref", dark ? "dark" : "light");
                 themeBtn.textContent = dark ? "☀️" : "🌙";
             });
-            navbar.insertBefore(themeBtn, navLinks);
+            const li = document.createElement("li");
+            li.appendChild(themeBtn);
+            navLinks.appendChild(li);
+        }
+
+        // Custom Language Selector
+        if (navbar && !navbar.querySelector(".custom-lang-selector")) {
+            const langContainer = document.createElement("div");
+            langContainer.className = "custom-lang-selector";
+            
+            const btn = document.createElement("button");
+            btn.className = "lang-btn";
+            btn.innerHTML = `🌐 O'zbek`;
+            
+            const dropdown = document.createElement("div");
+            dropdown.className = "lang-dropdown";
+            
+            const searchDiv = document.createElement("div");
+            searchDiv.className = "lang-search";
+            const searchInput = document.createElement("input");
+            searchInput.type = "text";
+            searchInput.placeholder = "Tilni qidiring...";
+            searchDiv.appendChild(searchInput);
+            
+            const list = document.createElement("ul");
+            list.className = "lang-list";
+            
+            const languages = [
+                { code: 'uz', name: "O'zbek", flag: '🇺🇿' },
+                { code: 'en', name: "English", flag: '🇬🇧' },
+                { code: 'ru', name: "Русский", flag: '🇷🇺' },
+                { code: 'tr', name: "Türkçe", flag: '🇹🇷' },
+                { code: 'kk', name: "Қазақша", flag: '🇰🇿' },
+                { code: 'tg', name: "Тоҷикӣ", flag: '🇹🇯' },
+                { code: 'ky', name: "Кыргызча", flag: '🇰🇬' },
+                { code: 'ar', name: "العربية", flag: '🇸🇦' },
+                { code: 'zh-CN', name: "中文", flag: '🇨🇳' }
+            ];
+            
+            function renderList(filterText = "") {
+                list.innerHTML = "";
+                languages.filter(l => l.name.toLowerCase().includes(filterText.toLowerCase())).forEach(lang => {
+                    const li = document.createElement("li");
+                    li.dataset.lang = lang.code;
+                    li.innerHTML = `${lang.flag} ${lang.name}`;
+                    li.addEventListener("click", () => {
+                        langContainer.classList.remove("open");
+                        // Google Translate selectorini topib o'zgartirish
+                        let gtSelect = document.querySelector(".goog-te-combo");
+                        
+                        if (gtSelect) {
+                            gtSelect.value = lang.code;
+                            gtSelect.dispatchEvent(new Event("change"));
+                            btn.innerHTML = `🌐 ${lang.name}`;
+                        } else {
+                            // Balki yuklanishga biroz vaqt kerakdir yoki cache muammosi
+                            alert("Tarjimon hali to'liq yuklanmadi. Iltimos, sahifani yangilang (F5) va yana urining.");
+                        }
+                    });
+                    list.appendChild(li);
+                });
+            }
+            
+            renderList();
+            
+            searchInput.addEventListener("input", (e) => {
+                renderList(e.target.value);
+            });
+            
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                langContainer.classList.toggle("open");
+                if(langContainer.classList.contains("open")) {
+                    setTimeout(() => searchInput.focus(), 50);
+                }
+            });
+            
+            document.addEventListener("click", (e) => {
+                if (!langContainer.contains(e.target)) {
+                    langContainer.classList.remove("open");
+                }
+            });
+            
+            dropdown.appendChild(searchDiv);
+            dropdown.appendChild(list);
+            langContainer.appendChild(btn);
+            langContainer.appendChild(dropdown);
+            
+            const li = document.createElement("li");
+            li.appendChild(langContainer);
+            navLinks.appendChild(li);
         }
 
         const session = getSession();
@@ -139,6 +250,15 @@
         const userBadge = document.createElement("span");
         userBadge.className = "nav-user-badge";
         userBadge.textContent = session.name;
+
+        if (isAdmin(session)) {
+            const adminLink = document.createElement("a");
+            adminLink.href = "admin.html";
+            adminLink.className = "nav-admin-link";
+            adminLink.textContent = "Admin Panel";
+            adminLink.style.marginRight = "10px";
+            li.appendChild(adminLink);
+        }
 
         const logoutBtn = document.createElement("button");
         logoutBtn.type = "button";
@@ -170,14 +290,35 @@
 
     window.Auth = {
         getSession,
+        getUsers,
+        deleteUser,
         registerUser,
         loginUser,
         logout,
         requireAuth,
+        requireAdmin,
+        isAdmin,
         mountNavbarAuth,
         markActiveNav
     };
 })();
 
-// Language switcher vaqtincha o'chirilgan (stub)
-window.LangSwitch = { init() {} };
+// Google Translate ulash
+(function() {
+    const translateDiv = document.createElement('div');
+    translateDiv.id = 'google_translate_element';
+    // Vidjet ko'rinishini yashirin ushlab turamiz, chunki maxsus dropdown ishlatiladi
+    document.body.appendChild(translateDiv);
+
+    window.googleTranslateElementInit = function() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'uz',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    };
+
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.head.appendChild(script);
+})();

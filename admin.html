@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel - Sog'lom turmush tarzi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Admin Panel</h1>
+</header>
+
+<nav class="navbar" aria-label="Asosiy navigatsiya">
+    <a class="logo" href="index.html">
+        <img class="logo-icon" src="images/logotip.png" alt="Sog'lom hayot">
+        <span>Sog'lom hayot</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="maqsad.html">Maqsad</a></li>
+        <li><a href="ovqatlanish.html">Ovqatlanish</a></li>
+        <li><a href="mashqlar.html">Mashqlar</a></li>
+        <li><a href="rejim.html">Rejim</a></li>
+        <li><a href="aloqa.html">Aloqa</a></li>
+    </ul>
+</nav>
+
+<section class="admin-section hero">
+    <div class="admin-container" style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+        <h2 style="margin-bottom: 20px;">Foydalanuvchilar ro'yxati</h2>
+        <div class="table-responsive" style="overflow-x: auto;">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Ism</th>
+                        <th>Email</th>
+                        <th>Amal</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <!-- Users will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Sog'lom turmush tarzi. Barcha huquqlar himoyalangan.</p>
+</footer>
+
+<script src="js/auth.js"></script>
+<script>
+    // Faqat admin kirishi mumkin
+    const session = Auth.requireAdmin();
+    Auth.mountNavbarAuth();
+    Auth.markActiveNav();
+
+    if (session) {
+        function renderUsers() {
+            const tbody = document.getElementById("usersTableBody");
+            const users = Auth.getUsers();
+            
+            tbody.innerHTML = "";
+            if (users.length === 0) {
+                tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>Foydalanuvchilar yo'q</td></tr>";
+                return;
+            }
+
+            users.forEach(user => {
+                const tr = document.createElement("tr");
+                
+                const nameTd = document.createElement("td");
+                nameTd.textContent = user.name;
+                
+                const emailTd = document.createElement("td");
+                emailTd.textContent = user.email;
+                
+                const actionTd = document.createElement("td");
+                
+                // Admin o'zini o'chira olmasligi kerak
+                if (user.email !== session.email) {
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.className = "btn-delete";
+                    deleteBtn.textContent = "O'chirish";
+                    deleteBtn.onclick = () => {
+                        if (confirm(user.name + " ismli foydalanuvchini o'chirmoqchimisiz?")) {
+                            Auth.deleteUser(user.id);
+                            renderUsers(); // Jadvalni yangilash
+                        }
+                    };
+                    actionTd.appendChild(deleteBtn);
+                } else {
+                    const span = document.createElement("span");
+                    span.className = "badge-admin";
+                    span.textContent = "Admin";
+                    actionTd.appendChild(span);
+                }
+                
+                tr.appendChild(nameTd);
+                tr.appendChild(emailTd);
+                tr.appendChild(actionTd);
+                tbody.appendChild(tr);
+            });
+        }
+
+        renderUsers();
+    }
+</script>
+</body>
+</html>
