@@ -124,7 +124,6 @@
 
         try {
             await Auth.registerUser(name, email, password);
-            await Auth.loginUser(email, password);
             setStatus("Akkaunt yaratildi va tizimga kirildi.", "success");
             location.href = nextPage();
         } catch (error) {

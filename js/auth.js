@@ -1,15 +1,56 @@
 (function () {
-    const USERS_KEY = "soglom_users_v1";
     const SESSION_KEY = "soglom_session_v1";
     const ADMIN_EMAIL = "abdusahatovotabek812@gmail.com";
 
-    function getUsers() {
-        return JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+    // --- Firebase Initialization ---
+    let firebaseApp = null;
+    let db = null;
+    let auth = null;
+
+    async function initFirebase() {
+        if (window.firebase) {
+            if (!firebaseApp) {
+                db = window.firebase.firestore();
+                auth = window.firebase.auth();
+            }
+            return;
+        }
+        
+        return new Promise((resolve, reject) => {
+            const script1 = document.createElement("script");
+            script1.src = "https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js";
+            document.head.appendChild(script1);
+            
+            script1.onload = () => {
+                const script2 = document.createElement("script");
+                script2.src = "https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js";
+                document.head.appendChild(script2);
+                
+                const script3 = document.createElement("script");
+                script3.src = "https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js";
+                document.head.appendChild(script3);
+
+                script3.onload = () => {
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyAusyZptjCQ_1fGDXGjPa1cSHNBhDgEU8Q",
+                        authDomain: "sog-lom-hayot-2d846.firebaseapp.com",
+                        projectId: "sog-lom-hayot-2d846",
+                        storageBucket: "sog-lom-hayot-2d846.firebasestorage.app",
+                        messagingSenderId: "540725342705",
+                        appId: "1:540725342705:web:0fd788976f9e44289c1450"
+                    };
+                    firebaseApp = window.firebase.initializeApp(firebaseConfig);
+                    db = window.firebase.firestore();
+                    auth = window.firebase.auth();
+                    resolve();
+                };
+                script3.onerror = reject;
+            };
+            script1.onerror = reject;
+        });
     }
 
-    function setUsers(users) {
-        localStorage.setItem(USERS_KEY, JSON.stringify(users));
-    }
+    // --- End Firebase ---
 
     function getSession() {
         return JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
@@ -17,14 +58,6 @@
 
     function setSession(session) {
         localStorage.setItem(SESSION_KEY, JSON.stringify(session));
-    }
-
-    async function hashPassword(password) {
-        const enc = new TextEncoder().encode(password);
-        const digest = await crypto.subtle.digest("SHA-256", enc);
-        return Array.from(new Uint8Array(digest))
-            .map((b) => b.toString(16).padStart(2, "0"))
-            .join("");
     }
 
     async function registerUser(name, email, password) {
@@ -35,45 +68,61 @@
             throw new Error("Barcha maydonlarni to'ldiring.");
         }
 
-        const users = getUsers();
-        if (users.some((u) => u.email === normalizedEmail)) {
-            throw new Error("Bu email bilan foydalanuvchi allaqachon mavjud.");
-        }
+        await initFirebase();
+        try {
+            const userCredential = await auth.createUserWithEmailAndPassword(normalizedEmail, password);
+            const user = userCredential.user;
+            
+            await db.collection("users").doc(user.uid).set({
+                id: user.uid,
+                name: normalizedName,
+                email: normalizedEmail,
+                createdAt: window.firebase.firestore.FieldValue.serverTimestamp()
+            });
 
-        const passwordHash = await hashPassword(password);
-        users.push({
-            id: Date.now().toString(36),
-            name: normalizedName,
-            email: normalizedEmail,
-            passwordHash
-        });
-        setUsers(users);
+            setSession({
+                userId: user.uid,
+                name: normalizedName,
+                email: normalizedEmail,
+                loggedAt: new Date().toISOString()
+            });
+        } catch (error) {
+            if (error.code === 'auth/email-already-in-use') {
+                throw new Error("Bu email bilan foydalanuvchi allaqachon mavjud.");
+            }
+            throw new Error("Xatolik yuz berdi: " + error.message);
+        }
     }
 
     async function loginUser(email, password) {
         const normalizedEmail = String(email || "").trim().toLowerCase();
-        const users = getUsers();
-        const found = users.find((u) => u.email === normalizedEmail);
-        if (!found) {
-            throw new Error("Email yoki parol noto'g'ri.");
-        }
+        
+        await initFirebase();
+        try {
+            const userCredential = await auth.signInWithEmailAndPassword(normalizedEmail, password);
+            const user = userCredential.user;
+            
+            const doc = await db.collection("users").doc(user.uid).get();
+            const name = doc.exists ? doc.data().name : "Foydalanuvchi";
 
-        const passwordHash = await hashPassword(password);
-        if (found.passwordHash !== passwordHash) {
-            throw new Error("Email yoki parol noto'g'ri.");
+            setSession({
+                userId: user.uid,
+                name: name,
+                email: normalizedEmail,
+                loggedAt: new Date().toISOString()
+            });
+            return user;
+        } catch (error) {
+            if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                throw new Error("Email yoki parol noto'g'ri.");
+            }
+            throw new Error("Baza xatoligi: " + error.message);
         }
-
-        setSession({
-            userId: found.id,
-            name: found.name,
-            email: found.email,
-            loggedAt: new Date().toISOString()
-        });
-        return found;
     }
 
     function logout() {
         localStorage.removeItem(SESSION_KEY);
+        if (auth) auth.signOut();
     }
 
     function requireAuth() {
@@ -99,10 +148,15 @@
         return session;
     }
 
-    function deleteUser(userId) {
-        let users = getUsers();
-        users = users.filter(u => u.id !== userId);
-        setUsers(users);
+    async function getUsers() {
+        await initFirebase();
+        const snapshot = await db.collection("users").get();
+        return snapshot.docs.map(doc => doc.data());
+    }
+
+    async function deleteUser(userId) {
+        await initFirebase();
+        await db.collection("users").doc(userId).delete();
     }
 
     function mountNavbarAuth() {

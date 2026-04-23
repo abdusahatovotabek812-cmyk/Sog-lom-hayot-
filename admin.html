@@ -58,51 +58,62 @@
     Auth.markActiveNav();
 
     if (session) {
-        function renderUsers() {
+        async function renderUsers() {
             const tbody = document.getElementById("usersTableBody");
-            const users = Auth.getUsers();
             
-            tbody.innerHTML = "";
-            if (users.length === 0) {
-                tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>Foydalanuvchilar yo'q</td></tr>";
-                return;
-            }
-
-            users.forEach(user => {
-                const tr = document.createElement("tr");
+            // Yuklanmoqda... holati
+            tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>Yuklanmoqda...</td></tr>";
+            
+            try {
+                const users = await Auth.getUsers();
                 
-                const nameTd = document.createElement("td");
-                nameTd.textContent = user.name;
-                
-                const emailTd = document.createElement("td");
-                emailTd.textContent = user.email;
-                
-                const actionTd = document.createElement("td");
-                
-                // Admin o'zini o'chira olmasligi kerak
-                if (user.email !== session.email) {
-                    const deleteBtn = document.createElement("button");
-                    deleteBtn.className = "btn-delete";
-                    deleteBtn.textContent = "O'chirish";
-                    deleteBtn.onclick = () => {
-                        if (confirm(user.name + " ismli foydalanuvchini o'chirmoqchimisiz?")) {
-                            Auth.deleteUser(user.id);
-                            renderUsers(); // Jadvalni yangilash
-                        }
-                    };
-                    actionTd.appendChild(deleteBtn);
-                } else {
-                    const span = document.createElement("span");
-                    span.className = "badge-admin";
-                    span.textContent = "Admin";
-                    actionTd.appendChild(span);
+                tbody.innerHTML = "";
+                if (users.length === 0) {
+                    tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>Foydalanuvchilar yo'q</td></tr>";
+                    return;
                 }
-                
-                tr.appendChild(nameTd);
-                tr.appendChild(emailTd);
-                tr.appendChild(actionTd);
-                tbody.appendChild(tr);
-            });
+
+                users.forEach(user => {
+                    const tr = document.createElement("tr");
+                    
+                    const nameTd = document.createElement("td");
+                    nameTd.textContent = user.name;
+                    
+                    const emailTd = document.createElement("td");
+                    emailTd.textContent = user.email;
+                    
+                    const actionTd = document.createElement("td");
+                    
+                    // Admin o'zini o'chira olmasligi kerak
+                    if (user.email !== session.email) {
+                        const deleteBtn = document.createElement("button");
+                        deleteBtn.className = "btn-delete";
+                        deleteBtn.textContent = "O'chirish";
+                        deleteBtn.onclick = async () => {
+                            if (confirm(user.name + " ismli foydalanuvchini o'chirmoqchimisiz?")) {
+                                deleteBtn.disabled = true;
+                                deleteBtn.textContent = "...";
+                                await Auth.deleteUser(user.id);
+                                renderUsers(); // Jadvalni yangilash
+                            }
+                        };
+                        actionTd.appendChild(deleteBtn);
+                    } else {
+                        const span = document.createElement("span");
+                        span.className = "badge-admin";
+                        span.textContent = "Admin";
+                        actionTd.appendChild(span);
+                    }
+                    
+                    tr.appendChild(nameTd);
+                    tr.appendChild(emailTd);
+                    tr.appendChild(actionTd);
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error(error);
+                tbody.innerHTML = "<tr><td colspan='3' style='text-align:center; color:red;'>Baza bilan ulanishda xatolik.</td></tr>";
+            }
         }
 
         renderUsers();
